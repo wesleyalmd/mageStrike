@@ -1,0 +1,37 @@
+{
+  "name": "magestrike",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Magestack Started Theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesleyalmd/magestrike.git"
+  },
+  "keywords": [
+    "magestrike",
+    "magento theme"
+  ],
+  "author": "Wesley Almeida <wesleyalmd@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/wesleyalmd/magestrike/issues"
+  },
+  "homepage": "https://github.com/wesleyalmd/magestrike#readme",
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "browser-sync": "^2.18.12",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-less": "^3.3.0",
+    "gulp-minify": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.1.2",
+    "gulp-util": "^3.0.8",
+    "path": "^0.12.7",
+    "streamqueue": "^1.1.1"
+  }
+}

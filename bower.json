@@ -1,0 +1,44 @@
+{
+  "name": "magestrike",
+  "authors": [
+    "Wesley Almeida <wesleyalmd@gmail.com>"
+  ],
+  "description": "Magento Started Theme",
+  "main": "",
+  "keywords": [
+    "magestrike",
+    "magento theme"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "font-awesome": "^4.7.0",
+    "gridlex": "^2.3.7",
+    "normalize-css": "^7.0.0",
+    "flexboxgrid": "ed1nh0/flexboxgrid#^6.3.0",
+    "flag-icon-css": "^2.8.0",
+    "slick-carousel": "^1.6.0",
+    "easyzoom": "^2.5.0",
+    "css-hamburgers": "^0.8.1",
+    "bootstrap-navbar-dropdowns": "fontenele/bootstrap-navbar-dropdowns#^1.0.0",
+    "formstone": "Formstone/Formstone#^1.3.3",
+    "magic-check": "^1.0.3",
+    "paymentfont": "AlexanderPoellmann/PaymentFont#^1.2.4",
+    "selectize": "selectize/selectize.js#^0.12.4",
+    "sifter": "^0.5.2",
+    "microplugin": "^0.0.3",
+    "magic-address": "wesleyalmd/magic-address#^1.0.4",
+    "jquery-mask-plugin": "^1.14.11",
+    "basket.js": "addyosmani/basket.js#^0.5.2",
+    "sharer.js": "ellisonleao/sharer.js#^0.3.2"
+  }
+}

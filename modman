@@ -1,0 +1,11 @@
+default/layout              app/design/frontend/magestrike/default/layout
+default/template            app/design/frontend/magestrike/default/template
+default/locale              app/design/frontend/magestrike/default/locale
+default/skin/public/*       skin/frontend/magestrike/default/
+default/media/magestrike/*  media/magestrike/
+
+#Last jQuery version 3.2.1
+default/skin/public/js/jquery.min.js js/lib/jquery.min.js
+
+#Placeholder img
+default/media/placeholder/* media/catalog/product/placeholder/default/
