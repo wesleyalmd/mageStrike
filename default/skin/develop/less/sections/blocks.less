@@ -1,0 +1,270 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+//== Banners
+//
+
+
+.banners-group {
+	
+}
+
+
+.banner-block {
+	margin: 10px 0;
+	img { .img-responsive; }
+}
+
+
+
+//==
+
+
+
+
+//== Store Features
+//
+
+
+.store-features {
+	hr {
+		margin-top: 30px;
+		margin-bottom: 30px;
+
+		@media (max-width: @screen-xs) {
+			margin-bottom: 0;
+		}
+	}
+
+	.feature-box {
+		background: @gray-lighter;
+		padding: 20px 30px;
+		display: flex;
+		align-items: center;
+
+		@media (max-width: @screen-sm) {
+			flex-direction: column;
+			text-align: center;
+			padding: 20px 10px;
+		}
+	}
+
+	.feature-icon {
+		span {
+			color: @gray-light;
+			margin-right: 20px;
+
+			@media (max-width: @screen-sm) {
+				margin-right: 0;
+			}
+		}
+
+		.feature-icon-shipping {
+			&:before { .ms-icon(shipping, 32px, 0, 0); }
+		}
+
+		.feature-icon-barcode {
+			&:before { .ms-icon(barcode, 32px, 0, 0); }
+		}
+
+		.feature-icon-credit-card {
+			&:before { .ms-icon(credit-card, 32px, 0, 0); }
+		}
+
+		.feature-icon-warranty {
+			&:before { .ms-icon(warranty, 32px, 0, 0); }
+		}
+	}
+
+	.feature-content {
+		strong {
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			display: block;
+			font-size: 12px;
+		}
+
+		span {
+			font-size: 13px;
+		}
+	}
+
+	@media (max-width: @screen-xs) {
+		.col-xs-6 {
+			padding: 0;
+		}
+	}
+
+}
+
+
+//== 
+
+
+
+
+//== Block defaults (general)
+//
+
+
+.block {
+	margin-bottom: @default-space;
+
+	// block title
+	.block-title {
+		margin: 0 0 (@default-space / 4);
+		strong {
+			span {
+				font-size: @font-size-h4;
+				color: @gray-darker;
+
+				small {  }
+			}
+		}
+
+		.push-close {
+			float: right;
+		}
+	}
+
+	// block content
+	.block-content {
+		// from <p>
+		.block-subtitle {
+			
+		}
+
+		h5 {  }
+
+		ul, ol {
+			&:extend(.list-group all);
+			margin-bottom: 0;
+
+			li {
+				&:extend(.list-group-item all);
+
+				a {  }
+
+				.badge {
+					float: right;
+					font-weight: bold;
+				}
+
+				&.item {  }
+			}
+		}
+
+		.actions {
+			margin-top: (@default-space / 2);
+			display: flex;
+			flex-direction: row-inverse;
+			justify-content: flex-start;
+			align-items: center;
+
+			a      { order: 2; }
+			.btn   { order: 0;
+				margin-right: 10px; 
+			}
+		}
+	}
+}
+
+
+//==
+
+
+
+
+//== Block layered
+//
+
+
+.block-layered-nav {
+	
+}
+
+
+//==
+
+
+
+
+//== Block banner
+//
+
+
+.block-banner {
+
+}
+
+
+//==
+
+
+
+
+//== Block cart
+
+
+.block-cart {
+	
+}
+
+
+//==
+
+
+
+
+//== Block newsletter
+//
+
+
+.block-subscribe {
+
+}
+
+
+//==
+
+
+
+
+//== Block poll
+//
+
+
+.block-poll {
+	.answer {
+		float: left;
+	}
+
+	.votes {
+		font-weight: bold;
+	}
+}
+
+
+//==
+
+
+
+
+//== Block compare
+//
+
+
+.block-compare {
+
+}
+
+
+//==
+

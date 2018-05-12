@@ -1,0 +1,39 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+?>
+<div class="product-image product-image-zoom">
+    <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+    <div class="easyzoom easyzoom--overlay easyzoom--with-thumbnails">
+        <a href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>">
+            <?php
+                $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image').'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" class="img-responsive" />';
+            echo $_helper->productAttribute($_product, $_img, 'image');
+            ?>
+        </a> 
+    </div>
+    <?php else: ?>
+        <?php
+            $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(1200).'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" class="img-responsive" />';
+            echo $_helper->productAttribute($_product, $_img, 'image');
+        ?>
+    <?php endif; ?>
+    <?php if (count($this->getGalleryImages()) > 0): ?>
+        <ul class="thumbnails">
+        <?php foreach ($this->getGalleryImages() as $_image): ?>
+            <li>
+                <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile()); ?>" data-standard="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile()); ?>" title="<?php echo $this->escapeHtml($_image->getLabel()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile()); ?>" alt="<?php echo $this->escapeHtml($_image->getLabel()) ?>" class="img-responsive" /></a>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+</div>

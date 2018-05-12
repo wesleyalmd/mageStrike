@@ -1,0 +1,710 @@
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+
+//== Onestep Checkout
+//
+
+
+.opc {
+
+	.step {
+		border: 1px solid #ccc;
+		margin-bottom: 20px;
+		padding: 10px 20px 0;
+		position: relative;
+	}
+
+	.step-title {
+		display: flex;
+		align-items: center;
+		margin: 10px 0px;
+		
+		.number {
+			margin-right: 10px;
+			background: @brand-primary;				
+			color: #fff;
+			width: 32px;
+		    height: 28px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    font-weight: 700;
+		    font-size: @font-size-small;
+		    border-radius: @border-radius-large;
+		}
+
+		h2 { 
+			margin: 0; 
+			min-width: 60%;
+			font-size: @font-size-h4;
+			text-transform: none;
+		}
+
+		.alt-title {
+			font-weight: 600;
+			width: 40%;
+			text-align: right;
+
+			a {
+				color: @gray-dark;
+				&:hover, &:focus {
+					color: @gray-darker;
+				}
+			}
+		}
+	}
+
+	.osc-title {
+		margin: 10px 0 15px;
+		padding: 0 15px;
+		background: transparent;
+		color: @gray-darker;
+		text-transform: uppercase;
+		font-size: @font-size-small + 1px;
+		font-weight: 700;
+		letter-spacing: 1px;
+	}
+
+	.panel-body { position: relative; }
+
+	.section {
+		&.allow  {  }
+		&.active {  }
+	}
+
+	.control {
+		margin: 4px 0 20px;
+	}
+
+	.tipopessoa {
+		.control {
+			display: block;
+			float: left;
+			margin-right: 30px;
+
+			&:last-child { margin-right: 0; }
+		}
+	}
+
+	.name-group {
+		width: 100%;
+	}
+
+	.sp-methods {
+		display: flex;
+		flex-wrap: wrap;
+
+		.single-method {
+			max-width:  33.33333%;
+			flex-basis: 33.33333%;
+			padding: 10px 4px;
+
+			@media (max-width: @screen-md) {
+				max-width:  50%;
+				flex-basis: 50%;
+			}
+
+			&:first-child { margin-left:  0; }
+			&:last-child  { margin-right: 0; }
+
+			.price {
+				display: block;
+			}
+
+			label {
+				width: 100%;
+				padding-left: 0;
+
+				&:before {
+				    border-radius: @border-radius-large;
+    				width:  100%;
+    				height: 62px;
+					position: relative;
+    				margin: 0;
+				}
+
+				&:after {
+					background-color: transparent;
+				}
+			}
+		}
+
+		.payment-subtitle {
+			display: block;
+		}
+	}
+
+}
+
+
+//== Shipping Address
+//
+
+
+#onestepcheckout-shipping-method {
+	[for="s_method_freeshipping_freeshipping"]:before {
+	background: url('../images/shipping-free.png') no-repeat 50% 50%;
+	}
+
+	[for="s_method_pedroteixeira_correios_04510"]:before {
+		background: url('../images/shipping-pac.png') no-repeat 50% 50%;
+	}
+
+	[for="s_method_pedroteixeira_correios_04014"]:before {
+		background: url('../images/shipping-sedex.png') no-repeat 50% 50%;
+	}
+}
+
+
+#onestepcheckout-shipping-address-list {
+	
+}
+
+
+
+//==
+
+
+
+//== Payment Methods
+//
+
+
+[for="p_method_banktransfer"]:before {
+	background: url('../images/payment-banktransfer.png') no-repeat 50% 50%;
+}
+
+[for="p_method_rm_pagseguro_cc"]:before {
+	background: url('../images/payment-pagseguro.png') no-repeat 50% 50%;
+}
+
+#onestepcheckout-payment-method {
+	dd .form-list {
+		border-top: 1px solid #ddd;
+    	padding: 10px 0;
+	}
+}
+
+
+//==
+
+
+
+//== Review Block
+//
+
+
+.onestepcheckout-cart-table {
+	thead { display: none; }
+
+	tbody tr:first-child > td {
+		border-top: 0;
+	}
+
+	.lc-thumbnails {
+		width: 100px;
+		img {
+			margin: 10px 0;
+		}
+	}
+
+	.product-info {
+		width: 100%;
+	}
+
+	.item-options {
+		display: flex;
+		margin: 10px 0 0;
+
+		dd { margin: 0 20px 0 6px; }
+	}
+
+	.product-name {
+		font-size: 16px;
+		font-weight: 700;
+	}
+
+	.qty-cart {
+		margin: 0 20px;
+    	font-weight: 700;
+    	font-size: 16px;
+	}
+
+	.cart-price {
+		font-size: 18px;
+		color: @brand-primary;
+		font-weight: 700;
+	}
+
+	tfoot {
+		font-size: 16px;
+		font-weight: 700;
+
+		td {
+			padding: 15px 5px !important;
+		}
+
+		> tr > td:first-child {
+			text-align: left !important;
+		}
+
+		> tr:last-child {
+			font-size: 20px;
+			color: #333;
+		}
+	}
+}
+
+
+//==
+
+
+
+//== Loading
+//
+
+.please-wait {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255,255,255,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+
+    @media (max-width: @screen-xs) {
+    	align-items: flex-end;
+    	padding-bottom: @default-space;
+    }
+
+	img {
+		width: 26px;
+		height: 26px;
+		margin-right: 10px;
+	}
+}
+
+
+.onestepcheckout-postcod-process {
+	display: none;
+	position: absolute;
+	width:  20px;
+	height: 20px;
+  	background-image: url('../images/loader.svg');
+  	background-repeat: no-repeat;
+  	background-size: 18px 18px;
+    right: 42px;
+    top: 7px;
+    z-index: 10;
+    background-color: #fff;
+}
+
+.onestepcheckout-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../images/loader.svg);
+    background-repeat: no-repeat;
+    background-size: 22px 22px;
+    background-color: rgba(255,255,255,0.7);
+    background-position: 50% 50%;
+    z-index: 10;
+}
+
+
+//==
+
+
+
+//== Block progress
+
+
+.opc-block-progress {
+
+	.block-title { display: none;
+		strong span {  }
+	}
+
+	.block-content {
+		dl { display: flex;
+			justify-content: center;
+
+			#billing-progress-opcheckout,
+			#shipping-progress-opcheckout,
+			#shipping_method-progress-opcheckout,
+			#payment-progress-opcheckout {
+				margin: 0 7px;
+
+				dt {
+					color: @gray-light;
+					font-weight: 700;
+					font-size: @font-size-small;
+					text-align: center;
+					&:before {
+					    margin: 0 auto;
+					    display: flex;
+					    justify-content: center;
+					    width: 42px;
+					    height: 42px;
+					    border: 2px solid #ddd;
+					    border-radius: 100%;
+					    align-items: center;
+					    font-size: 13px;
+					    margin-bottom: 6px;
+					}
+
+					&.complete {
+						&:before {
+							border: 2px solid @brand-success;
+							color: @brand-success;
+							background: lighten(@brand-success, 50%);
+							font-family: @ms-icon-family;
+						}
+
+						.changelink {
+							a { 
+								color: @gray-darker; 
+							}
+						}
+					}
+				}
+
+				@media (max-width: @screen-xs) {
+					dt {
+					font-size: 11px;
+						&:before {
+						    width: 36px;
+						    height: 36px;
+						    font-size: 12px;
+						}
+					}
+				}
+
+				dd.complete { display: none; }
+			}
+
+
+			#billing-progress-opcheckout {
+				dt:before          { content: "1"; }
+				dt.complete:before { content: @@ms-icon-check; }
+			}
+
+			#shipping-progress-opcheckout {
+				dt:before          { content: "2"; }
+				dt.complete:before { content: @@ms-icon-check; }
+			}
+
+			#shipping_method-progress-opcheckout {
+				dt:before          { content: "3"; }
+				dt.complete:before { content: @@ms-icon-check; }
+			}
+
+			#payment-progress-opcheckout {
+				dt:before          { content: "4"; }
+				dt.complete:before { content: @@ms-icon-check; }
+			}
+		}
+	}
+
+}
+
+
+//==
+
+
+
+//== Checkout page
+//
+
+
+.checkout-onepage-index {
+	.page-title {
+		justify-content: center;
+	}
+}
+
+
+//==
+
+
+
+//== Modal
+//
+
+
+.onestepcheckout-popup,
+.onestepcheckout-popup-accept {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.onestepcheckout-popup {
+	position: fixed;
+    min-height: 40%;
+    width: 70%;
+    background-color: white;
+    z-index: 200;
+    overflow: hidden;
+    padding: 30px 15px;
+}
+
+.onestepcheckout-popup-content {
+	overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 0;
+    padding: 0 15px;
+}
+
+.onestepcheckout-popup-accept {
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 20px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.onestepcheckout-popup-overlay {
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    -moz-opacity: 0.3;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    z-index: 100;
+    cursor: pointer;
+}
+
+
+//==
+
+
+
+//== Totals
+//
+
+
+
+
+
+//
+
+
+
+//== Review
+//
+
+
+#onestepcheckout-review-comments-simple {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+
+    .collapse-content {
+    	margin-top: 15px;
+    }
+}
+
+
+//==
+
+
+
+//==
+//
+
+
+#onestepcheckout-help {
+	background: #fff;
+	padding-top: 20px;
+	text-align: center;
+	font-weight: 700;
+
+	span {  }
+
+	a { color: #333;
+		&:hover, &:focus { color: #000; }
+	}
+}
+
+
+//==
+
+
+
+//== Cupom
+//
+
+
+.coupon-message-container {
+	font-weight: 700;
+    color: @brand-success;
+}
+
+
+//==
+
+
+
+//== Terms
+//
+
+
+#onestepcheckout-order-review-terms-wrapper {
+	padding: 30px 20px 0;
+}
+
+
+//==
+
+
+
+//== Newsletter
+//
+
+
+#onestepcheckout-review-newsletter-simple {
+	padding: 6px 20px 0;
+}
+
+
+//==
+
+
+
+//== Place Order
+//
+	
+#onestepcheckout-place-order {
+	margin: 30px 0 0;
+	position: relative;
+
+	.onestepcheckout-place-order-please-wait {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		color: #333;
+		font-size: 14px;
+		font-weight: 700;
+		background-color: #ddd;
+		padding: 14px 22px;
+	}
+}
+
+
+//==
+
+
+
+//== Success
+//
+
+
+.checkout-success-order {
+	margin-top: 40px;
+
+	.table-responsive {
+		margin-top: 10px;
+	}
+
+	.onestepcheckout-cart-table {
+		border: 1px solid #ccc;
+    	padding: 10px 20px;
+
+    	@media (min-width: @screen-xs) {
+    		margin-top: 10px;
+    	}
+
+    	.lc-thumbnails img {
+    		width: 120px;
+    	}
+	}
+
+	tfoot {
+		font-size: 18px;
+		font-weight: 700;
+		color: #333;
+	}
+
+	.order-id {
+	    font-size: 18px;
+    	color: #222;
+    	font-weight: 700;
+	}
+}
+
+
+//==
+
+
+
+
+//== PagSeguro
+//
+
+
+.form-list .customer-dob .dob-month,
+.form-list .customer-dob .dob-day {
+	width: 25%;
+	padding-right: 10px;
+}
+
+.form-list .customer-dob .dob-year {
+	width: 50%;
+}
+
+#rm_pagseguro_cc_cc_type_exp_div {
+	.input-box {
+		.v-fix:first-child {
+			width: 60%;
+			padding-right: 10px;
+		}
+
+		.v-fix:last-child {
+			width: 40%;
+		}
+	}
+}
+
+#rm_pagseguro_cc_cc_installments_div {
+	margin: 15px 0 25px;
+
+	.v-fix { width: 100%; }
+}
+
+
+//==
+

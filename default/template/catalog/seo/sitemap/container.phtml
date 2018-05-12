@@ -1,0 +1,26 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="page-sitemap">
+    <div class="page-title title-buttons">
+        <h1><?php echo $this->getTitle() ?></h1>
+        
+        <div class="buttons-set">
+            <?php echo $this->getChildHtml('links') ?>
+        </div>
+    </div>
+
+    <?php echo $this->getChildHtml('sitemap') ?>
+    
+    <div class="toolbar-bottom">
+        <div class="toolbar">
+            <?php echo $this->getChildHtml('pager_top') ?>    
+        </div>
+    </div>
+</div>

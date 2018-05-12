@@ -1,0 +1,202 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+//== Footer base
+//
+
+
+footer {
+	margin: @footer-margin;
+	background: @footer-bg;
+	color: @footer-color;
+
+	@media (max-width: @screen-xs) {
+		margin-top: 0;
+		border-top: 1px solid #ddd;
+	}
+
+	.footer-top {
+		padding: (@default-space / 2) 0;
+	}
+
+	.footer-middle {
+		padding: (@default-space + (@default-space / 2)) 0;
+	}
+
+	.footer-bottom {
+		padding: @default-space 0 (@default-space - ((@default-space) / 3));
+	}
+
+	h2, h3, h4, h5, h6 {
+		margin-top: 0;
+		color: @footer-color-heading;
+	}
+
+	.footer-contact {
+		margin: (@default-space / 2) 0;
+		p {
+			margin: 0 @default-space 0 0;
+			&:last-child { margin-right: 0; }
+		}
+	}
+
+	.footer-links,
+	.footer-newsletter {
+		@media (max-width: @screen-xs) {
+			h5 {
+				background: darken(@footer-bg, 5%);
+				color: @footer-links-color;
+			}
+		}
+	}
+
+	.footer-links {
+		&:extend(.collapse-mobile all);
+		h5 {  }
+		ul {  }
+		li {
+			margin: 8px 0;
+		}
+		a  {
+			color: @footer-links-color;
+			&:hover, &:focus {
+				color: @footer-links-color-hover;
+			}
+		}
+	}
+
+	.footer-newsletter {
+		&:extend(.collapse-mobile all);
+		.block, .input-box {
+			margin-bottom: 0;
+		}
+	}
+
+	.footer-social,
+	.footer-payment,
+	.footer-security {
+		ul {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			margin-bottom: 0;
+		}
+	}
+
+	.footer-social {
+		ul {
+			&:extend(.social-icons all);
+			margin: (@default-space / 2) 0;
+		}
+	}
+
+	.footer-payment {
+		ul {
+			&:extend(.payment-icons all);
+		}
+	}
+
+	.footer-security {
+		ul {
+			li {
+				margin-right: @default-space;
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+
+		img {
+			height: 38px;
+
+			@media (max-width: @screen-sm) {
+				//height: 32px;
+			}
+		}
+	}
+
+}
+
+
+//==
+
+
+
+//== Footer default
+//
+
+
+footer.default {
+
+	.footer-top {
+		border-bottom: 1px solid @footer-border-color;
+	}
+
+	.footer-bottom {
+		border-top: 1px solid @footer-border-color;
+	}
+
+	@media (min-width: @screen-sm-min) {
+		.social-icons {
+			float: right;
+		}
+	}
+
+	.footer-contact {
+		display: flex;
+
+		@media (max-width: @screen-xs) {
+			justify-content: center;
+		}
+	}
+
+	.footer-social {
+		ul {
+			@media (min-width: @screen-sm) {
+				justify-content: flex-end;
+			}
+		}
+	}
+
+	.footer-links {
+		
+	}
+
+	.footer-payment {
+		ul {
+			@media (min-width: @screen-sm) {
+				justify-content: flex-start;
+			}
+		}
+	}
+
+	.footer-security {
+		@media (max-width: @screen-sm) {
+			margin-top: @default-space;
+		}
+		ul {
+			@media (min-width: @screen-sm) {
+				justify-content: flex-end;
+			}
+		}
+	}
+
+	.copyright {
+		margin: @default-space 0 (@default-space / 2);
+		padding-top: @default-space;
+		border-top: 1px solid @footer-border-color;
+		text-align: center;
+	}
+
+}
+
+
+//==
+

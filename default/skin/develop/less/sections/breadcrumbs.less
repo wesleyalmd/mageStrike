@@ -1,0 +1,34 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+.breadcrumbs {
+	&:extend(.col-xs-12);
+	margin-bottom: @default-space / 3;
+
+	ul, ol {
+		display: flex;
+	}
+
+	li {
+		display: inline-flex;
+		&:after {
+			content: "/";
+			padding: 0 10px;
+			color: @gray-light;
+		}
+	}
+	li:last-child {
+		color: @gray-light;
+		&:after {
+			display: none;
+		}
+	}
+}
+

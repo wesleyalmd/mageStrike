@@ -1,0 +1,451 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+//== Catalog defaults
+//
+
+.product-image {
+	> img {
+		width: 100%;
+    	height: auto;
+	}
+}
+
+.product-name {
+	margin: 0;
+}
+
+// Rating
+.ratings {
+	.rating-links {
+		margin: 0;
+		a {
+
+		}
+		.separator { display: none; }
+	}
+}
+
+// Price box
+.price-box {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+
+	small {
+		display: block;
+		color: @gray-dark;
+		font-size: @font-size-base;
+		font-weight: 700;
+	}
+
+	.price-box-legend {
+		position: relative;
+    	width: 100%;
+    	font-weight: 700;
+	}
+
+	.price-box-diff {
+		order: 5;
+		margin-top: @default-space / 2;
+		width: 100%;
+		.special-price {
+			font-size: @font-size-large;
+		}
+	}
+}
+.price-label,
+.minimal-price-link { display: none; }
+
+.price {  }
+
+// from <p>
+.regular-price, 
+.special-price,
+.old-price { margin: 0; }
+
+.regular-price, .special-price {
+	font-size: @font-size-large;
+	font-weight: 700;
+	color: @brand-primary;
+	order: 1;
+	margin-right: @default-space / 2;
+}
+
+.old-price {
+	font-size: @font-size-base;
+	font-weight: 400;
+	color: @gray-light;
+	order: 2;
+	text-decoration: line-through;
+}
+
+// Availability
+.availability {
+	margin-bottom: 0;
+	&.in-stock     { span:before { .ms-icon(in-stock);     } }
+	&.out-of-stock { span:before { .ms-icon(out-of-stock); } }
+}
+
+// Add to cart
+.btn-cart {
+	&:extend(.btn-primary all);
+}
+
+// Add to links
+.add-to-links {
+	margin: 0;
+	display: flex;
+	li {
+		display: inline-block;
+		margin-right: (@default-space / 2);
+
+		&:last-child { margin-right: 0; }
+
+		a {  float: left; }
+	}
+}
+
+// Link wishlist
+.link-wishlist {  }
+
+// Link Compare
+.link-compare {
+	display: none; // permanet disable compare list
+}
+
+
+//==
+
+
+
+//== Item
+//
+
+
+.item {
+	.box {  }
+
+	.product-image {
+		img {  }
+	}
+
+	.product-name {
+		font-size: @font-size-base;
+		line-height: 1.1;
+
+		a {
+
+		}
+	}
+
+	// Price box
+	.price-box {
+		margin: 0;
+		.regular-price, .special-price {
+
+		}
+
+		.old-price {
+
+		}
+	}
+
+	// Price new block
+	.price-new {
+		margin: (@default-space / 3) 0 0;
+		font-size: @font-size-small;
+		line-height: 1.2;
+
+		.price-plots-block   {  }
+		.price-barcode-block {  }
+	}
+
+	.availability {  }
+
+	.actions {
+	    display: flex;
+    	align-items: center;
+    	margin: (@default-space / 2) 0 0;
+
+		.btn-cart {
+			
+		}
+
+		.availability {
+			&:extend(.btn all);
+			&:extend(.btn-default all);
+		}
+
+		.add-to-links {
+			margin-left: @default-space;
+
+			li {
+				a { font-size: 0; }	
+			}
+		}
+	}
+}
+
+
+//==
+
+
+
+//== Catalog sidebar
+//
+
+
+
+//==
+
+
+
+//== Products grid
+//
+
+.products-grid {
+	&:extend(.row all);
+	margin-bottom: 0;
+
+	.item {
+		margin-bottom: @grid-gutter-width;
+
+		&.slick-slide {
+			margin-bottom: @grid-gutter-width / 2;
+		}
+
+		.item-box {
+			background: @products-grid-item-bg;
+			border: @products-grid-item-border;
+			padding: @products-grid-item-padding;
+		}
+
+		.product-name {
+			margin: (@default-space / 2) 0 0;
+			height: 52px;
+		}
+
+		.item-wrap {
+			margin: 0 (@default-space / 3);
+		}
+
+		.add-to-links {
+			a {
+				font-size: 0;
+
+				&:before {
+					margin-right: 0;
+				}
+			}
+		}
+
+		@media (max-width: @screen-sm) {
+			position: relative;
+
+			.item-box {
+				padding: 0;
+				border:  0;
+			}
+
+			.item-wrap {
+			    margin-left:  0 !important;
+    			margin-right: 0 !important;
+			}
+
+			.btn-cart,
+			.availability {
+				.btn-block;
+			}
+
+			.add-to-links {
+				position: absolute;
+    			top: 0;
+    			right: @default-space / 3;
+			}
+		}
+	}
+}
+
+
+//==
+
+
+
+//== Produts mini list
+//
+
+
+.mini-products-list {
+	margin-bottom: 0;
+	
+	.item {
+		display: flex !important;
+
+		.product-image {
+			margin-right: 12px;
+			img { width: 66px; }
+		}
+
+		.product-details {
+			position: relative;
+			width: 100%;
+			padding-right: 20px;
+
+			.btn-remove,
+			.btn-edit,
+			.link-cart {
+				font-size: 0;
+				position: absolute;
+				top: 0;
+				right: 0;
+
+				&:before {
+					font-size: 12px;
+					margin-right: 0;
+				}
+			}
+			.btn-edit  { top: 20px; }
+			.link-cart { top: 44px; }
+
+			.product-name {
+				font-size: @font-size-base;
+				margin: 2px 0 6px;
+			}
+
+			.price-box {
+				margin: 0;
+				.regular-price,
+				.special-price,
+				.old-price {
+					font-size: @font-size-base;
+				}
+			}
+
+			.item-options {
+				margin-bottom: 0;
+				dt, dd { padding: 0; }
+				dt {
+					float: left;
+					margin-right: 5px;
+				}
+			}
+
+			// use in cart qty
+			strong {  }
+		}
+
+		.actions {
+			display: flex;
+			align-items: center;
+
+			.link-cart,
+			.link-wishlist,
+			.link-compare {
+				font-size: 0;
+				margin-right: 10px;
+				&:before {
+					
+				}
+			}
+			.link-cart {
+				&:before { .ms-icon(cart, @font-size-small, 0, 0); }
+			}
+
+			.link-wishlist {
+				&:before { .ms-icon(wishlist, @font-size-small, 0, 0); }
+			}
+
+			.link-compare {
+				&:before { .ms-icon(compare, @font-size-small, 0, 0); }
+			}
+		}
+		
+	}
+	
+}
+
+
+//==
+
+
+
+//== Products list
+//
+
+
+.products-list {
+	.item {
+		margin-bottom: @default-space + (@default-space / 2);
+
+		.item-box { display: flex; }
+
+		.box {  }
+
+		.product-image { width: 260px; }
+
+		.product-shop {
+			width: 100%;
+			margin-left: @default-space / 2;
+		    display: flex;
+    		flex-direction: column;
+    		justify-content: space-between;
+		}
+
+		.product-name { margin: 0 0 (@default-space / 2); }
+
+		.desc { margin-top: @default-space / 2; }
+
+		.add-to-links {
+			@media (max-width: @screen-sm) {
+				.link-wishlist,
+				.link-compare {
+					font-size: 0;
+
+					&:before {
+						margin-left: 0;
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+//==
+
+
+
+//== EasyZoom
+//
+
+
+.easyzoom {
+	&.is-ready img {
+		cursor: crosshair;
+	}
+}
+
+
+//==
+
+
+
+//== Catalog Search
+//
+
+
+.catalogsearch-result-index {
+	.btn-filters { display: none; }
+}
+
+
+//==

@@ -1,0 +1,252 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+//== General
+//
+
+
+// remove all outline
+* {
+	outline: none !important;
+	-webkit-font-smoothing: antialiased;
+}
+
+// Default ul and ol
+ul, ol {
+	&:extend(.list-unstyled all);
+}
+
+// Data list
+dl {
+	dt, dd { padding: 2px 0; }
+
+	ul, ol {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+// Display block
+.no-display, .hide {
+	&:extend(.hidden);
+}
+
+.nobr { white-space: nowrap; }
+
+// Simple separator
+.simple-separator {
+	&:before {
+		display: inline-block;
+		content: "/";
+		color: lighten(@gray-light, 20%);
+		padding: 0 8px;
+	}
+
+	&:first-child {
+		&:before {
+			display: none;
+		}
+	}
+}
+
+// Text align
+.a-left   { text-align:   left; }
+.a-right  { text-align:  right; }
+.a-center { text-align: center; }
+
+
+//==
+
+
+
+
+//== Titles
+//
+
+
+// Page title
+.page-title {
+	margin: (@default-space / 2) 0 @default-space;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media (max-width: @screen-sm) {
+    	justify-content: center;
+    	text-align: center;
+    }
+
+    h1, h2, h3 {
+    	margin: 0;
+    	
+		@media (max-width: @screen-xs) {
+			width: 100%;
+		}
+
+    }
+
+    ul, ol {
+    	margin-bottom: 0;
+    }
+
+    &.title-buttons {
+    	justify-content: space-between !important;
+
+    	@media (max-width: @screen-xs) {
+    		justify-content: center !important;
+    	}
+
+    	.checkout-types {
+    		li {  }
+    	}
+
+    	.checkout-types,
+    	.buttons-set {
+    		margin: 0;
+
+			@media (max-width: @screen-xs) {
+				margin-top: @default-space / 2;
+			}
+
+    		.button, .button2, .btn { 
+    			margin-right: 10px;
+    			&:last-child { margin-right: 0; }
+    		}
+    	}
+    }
+}
+
+
+//==
+
+
+
+
+//== Logo has util
+//
+
+
+.logo-has,
+.logo-has-lg,
+.logo-has-sm {
+	&:after {
+		display: block;
+		margin: 0 auto;
+		width: 26px;
+		height: 18px;
+		content: "";
+		background: url("../images/logo-has.svg") no-repeat;
+		margin-top: 12px;
+		opacity: .2;
+	}
+}
+
+.logo-has-lg {
+	&:after {
+		width: 36px;
+		height: 22px;
+		margin-top: 16px;
+	}
+}
+
+.logo-has-sm {
+	&:after {
+		width: 16px;
+		height: 10px;
+		margin-top: 10px;
+	}
+}
+
+
+// Social icons
+.social-icons {
+	li { 
+		margin-right: 10px;
+		font-size: 0;
+
+		&:last-child { margin-right: 0; }
+
+		a {
+		    display: flex;
+		    width: 36px;
+		    height: 36px;
+		    border: 2px solid @brand-primary;
+		    border-radius: 100%;
+		    justify-content: center;
+		    align-items: center;
+		}
+	}
+
+	.facebook  { a { &:before { .ms-icon(facebook,  14px, 0, 0); } } }
+	.twitter   { a { &:before { .ms-icon(twitter,   14px, 0, 0); } } }
+	.instagram { a { &:before { .ms-icon(instagram, 14px, 0, 0); } } }
+	.google    { a { &:before { .ms-icon(google,    14px, 0, 0); } } }
+	.pinterest { a { &:before { .ms-icon(pinterest, 14px, 0, 0); } } }
+
+	@media (max-width: @screen-xs) {
+	    display: flex;
+    	justify-content: center;
+    	flex-wrap: wrap;
+
+    	li { margin: 0 5px 0; }
+	}
+}
+
+
+//==
+
+
+
+
+//== Payment icons
+//
+
+
+.payment-icons {
+	li {
+		margin-right: @default-space / 2;
+		&:last-child { margin-right: 0; }
+
+		span {
+			font-size: 0;
+			float: left;
+
+			&:before {
+				font-family: "PaymentFont";
+				font-size: 20px;
+			}
+		}
+	}
+
+	.visa             { span { &:before { content: @pf-var-visa;             } } }
+	.mastercard       { span { &:before { content: @pf-var-mastercard-alt;   } } }
+	.elo              { span { &:before { content: @pf-var-elo-alt;          } } }
+	.american-express { span { &:before { content: @pf-var-american-express; } } }
+	.diners           { span { &:before { content: @pf-var-diners;           } } }
+	.hipercard        { span { &:before { content: @pf-var-hipercard;        } } }
+	.jcb              { span { &:before { content: @pf-var-jcb;              } } }
+	.diners           { span { &:before { content: @pf-var-diners;           } } }
+
+	.boleto {
+		margin-left: 4px;
+		span:before {
+			font-family: "FontAwesome";
+			content: @fa-var-barcode;
+			font-size: 24px;
+			line-height: 28px;
+		}
+	}
+}
+
+
+//==
+

@@ -1,0 +1,210 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="onestepcheckout-page">
+    <?php //echo $this->getChildHtml('auth'); ?>
+    <div class="checkout-progress">
+        <div class="checkout-block">
+            <div class="checkout-status checkout-status-active">
+                <div class="checkout-status-nunber">
+                    <span><strong>01</strong></span>
+                </div>
+
+                <div class="checkout-status-label">
+                    <span><strong><?php echo $this->__('Shopping Cart'); ?></strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-block">
+            <div class="checkout-status checkout-status-active">
+                <div class="checkout-status-nunber">
+                    <span><strong>02</strong></span>
+                </div>
+
+                <div class="checkout-status-label">
+                    <span><strong><?php echo $this->__('Payment and Shipping'); ?></strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-block">
+            <div class="checkout-status">
+                <div class="checkout-status-nunber">
+                    <span><strong>03</strong></span>
+                </div>
+
+                <div class="checkout-status-label">
+                    <span><strong><?php echo $this->__('Proceed to Checkout'); ?></strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form id="onestepcheckout-general-form" method="post" action="#">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-8">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <section class="opc">
+                            <div class="section allow active">
+                                <?php echo $this->getChildHtml('address'); ?>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <section class="opc">
+                            <div id="onestepcheckout-shipping-method-wrapper" class="section allow active">
+                                <?php echo $this->getChildHtml('shippingmethod'); ?>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                        <section class="opc">
+                            <div id="onestepcheckout-payment-method-wrapper" class="section allow active">
+                                <?php echo $this->getChildHtml('paymentmethod'); ?>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <section class="opc">
+                            <div class="section allow active">
+                                <?php $blockNumberClass = (!is_null($this->getBlockNumber(false))) ? "onestepcheckout-number-4" : ""; ?>
+                                <?php if(Mage::getStoreConfig('onestepcheckout/general/is_show_titles')): ?>
+                                    <div class="step-title">
+                                        <span class="number onestepcheckout-number <?php echo $blockNumberClass; ?>">4</span>
+                                        <h2><?php echo $this->__('Order Review'); ?></h2>
+                                    </div>
+                                <?php endif; ?>
+                                <div class="step a-item table-responsive">
+                                    <div id="onestepcheckout-order-review">
+                                        <div id="onestepcheckout-order-review-cart-wrapper">
+                                            <?php echo $this->getChildHtml('review.cart'); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>    
+            </div>
+
+            <aside class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                <div class="cart-collateral">
+                    <div id="onestepcheckout-order-review-extra-wrapper">
+                        <?php echo $this->getChildHtml('review.extra'); ?>
+                    </div>
+
+                    <div id="onestepcheckout-order-review-coupon-wrapper">
+                        <?php echo $this->getChildHtml('review.coupon'); ?>
+                    </div>
+
+                    <div id="onestepcheckout-order-review-comments-wrapper">
+                        <?php echo $this->getChildHtml('review.comments'); ?>
+                    </div>
+
+                    <div id="onestepcheckout-order-review-terms-wrapper">
+                        <?php echo $this->getChildHtml('review.terms'); ?>
+                    </div>
+
+                    <div id="onestepcheckout-order-review-newsletter-wrapper">
+                        <?php echo $this->getChildHtml('review.newsletter'); ?>
+                    </div>
+
+                    <div id="onestepcheckout-place-order">
+                        <button type="button" class="button btn-proceed-checkout btn-checkout btn-primary btn-block btn-lg" title="<?php echo $this->__('Place Order Now'); ?>" id="onestepcheckout-place-order-button">
+                            <span><span class="onestepcheckout-place-order-title"><?php echo $this->__('Place Order'); ?></span></span>
+                            <span class="onestepcheckout-place-order-amount hide hidden" ><?php echo $this->getGrandTotal(); ?></span>
+                        </button>
+
+                        <div class="onestepcheckout-place-order-please-wait" style="display:none">
+                            <img src="<?php echo $this->getSkinUrl('images/loader.svg') ?>" width="20" height="20" />
+                            <?php echo $this->__('Please wait, processing your order...') ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="onestepcheckout-help">
+                    <span><?php echo $this->__('Help? Contact'); ?> <a href="<?php echo Mage::getUrl('contato'); ?>"><?php echo $this->__('Support'); ?></a></span>
+                </div>
+            </aside> 
+        </div>
+    </form>
+    <div id="onestepcheckout-popup" class="onestepcheckout-popup" style="display:none">
+        <div id="onestepcheckout-popup-content" class="onestepcheckout-popup-content"></div>
+        <div id="onestepcheckout-popup-accept" class="onestepcheckout-popup-accept">
+            <button type="button"><?php echo $this->__('Accept'); ?></button>
+            <a href="javascript:void(0)"><?php echo $this->__('Close'); ?></a>
+        </div>
+    </div>
+    <div id="onestepcheckout-overlay" class="onestepcheckout-popup-overlay" style="display:none"></div>
+    <script type="text/javascript">
+        var OSCForm = new OnestepcheckoutForm({
+            formId: 'onestepcheckout-general-form',
+            cartContainerSelector: "#onestepcheckout-order-review-cart-wrapper",
+            // validate shipping and payment
+            shippingMethodName: 'shipping_method',
+            shippingMethodAdvice: '#onestepcheckout-shipping-method .validation-advice',
+            shippingValidationMessage: '<?php echo $this->__('Please specify shipping method.'); ?>',
+            shippingMethodWrapperSelector: '#onestepcheckout-shipping-method .sp-methods',
+            paymentMethodName: 'payment[method]',
+            paymentMethodAdvice: '#onestepcheckout-payment-method dl+.validation-advice',
+            paymentValidationMessage: '<?php echo $this->__('Please specify payment method.'); ?>',
+            paymentMethodWrapperSelector: '#onestepcheckout-payment-method .sp-methods',
+            //place order functionality
+            placeOrderUrl: '<?php echo $this->getPlaceOrderUrl(); ?>',
+            successUrl: '<?php echo $this->getUrl('checkout/onepage/success'); ?>',
+            granTotalAmountSelector: '.onestepcheckout-place-order-amount',
+            placeOrderButtonSelector: 'onestepcheckout-place-order-button',
+            pleaseWaitNoticeSelector: '.onestepcheckout-place-order-please-wait',
+            overlayId: 'onestepcheckout-place-order-overlay',
+            disabledClassName: 'onestepcheckout-place-order-button-disabled',
+            popup: {
+                overlaySelector: "#onestepcheckout-overlay",
+                containerSelector: "#onestepcheckout-popup",
+                contentContainerSelector: "#onestepcheckout-popup-content",
+                acceptContainerSelector: "#onestepcheckout-popup-accept",
+                buttons: {
+                    accept:{
+                        selector: "#onestepcheckout-popup-accept button",
+                        enabled: false
+                    },
+                    close:{
+                        selector: "#onestepcheckout-popup-accept a",
+                        enabled: false
+                    }
+                }
+            }
+        });
+    </script>
+</div>
+<script type="text/javascript">
+    OnestepcheckoutCore.updateNumbers();
+    OnestepcheckoutCore.updater.setConfig({
+        loaderConfig: {
+            '48px': 'onestepcheckout-overlay onestepcheckout-overlay-48',
+            '24px': 'onestepcheckout-overlay onestepcheckout-overlay-24',
+            '16px': 'onestepcheckout-overlay onestepcheckout-overlay-16'
+        },
+        map: <?php echo Zend_Json::encode($this->getBlockMap()); ?>,
+        blocks: [
+            ['shipping_method', '#onestepcheckout-shipping-method-wrapper'],
+            ['payment_method', '#onestepcheckout-payment-method-wrapper'],
+            ['review_cart', '#onestepcheckout-order-review-cart-wrapper'],
+            ['review_coupon', '#onestepcheckout-order-review-coupon-wrapper'],
+            ['review_points', '#onestepcheckout-order-review-points-wrapper'],
+            ['review_referafriend', '#onestepcheckout-order-review-referafriend-wrapper']
+        ],
+        loaderToBlockCssClass: 'onestepcheckout-add-loader-into-this-block'
+    });
+</script>
+<script type="text/javascript">
+if(!BASE_URL) var BASE_URL = "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB); ?>";
+</script>

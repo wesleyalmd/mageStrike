@@ -1,0 +1,82 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+//== Site-map defaults
+//
+
+
+.page-sitemap {
+	.page-title {
+		.buttons-set {
+			.links a {
+				&:extend(.btn all);
+				&:extend(.btn-default all);
+			}
+		}
+
+		@media (max-width: @screen-sm) {
+			&.title-buttons {
+				.buttons-set {
+					margin: 0 auto;
+					margin-top: 20px;
+				}
+			}
+		}
+	}
+
+	.toolbar-bottom {
+		margin-top: @default-space;
+
+		.pager { 
+			width: 100%; 
+			display: flex;
+    		justify-content: space-between;
+    		align-items: center;
+
+    		@media (max-width: @screen-sm) {
+				flex-direction: column;
+			}
+		}
+	}
+}
+
+
+ol.sitemap, 
+ul.sitemap {
+	margin: 0 -2px;
+	//list-style: initial;
+	display: flex;
+	flex-wrap: wrap;
+
+	li {
+		padding: 0 2px;
+		width: 50%;
+
+		a {
+			border-bottom: 1px solid #ddd;
+			padding: (@default-space / 2) 0;
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+		&:last-child,
+		&:nth-last-child(2) {
+			a {
+				border-bottom: 0;
+			}
+		}
+
+	}
+}
+
+
+//==
+

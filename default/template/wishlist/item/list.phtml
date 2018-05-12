@@ -1,0 +1,38 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php
+    $columns = $this->getColumns();
+?>
+<?php if (count($this->getItems())): ?>
+    <ul class="products-grid">
+        <?php foreach ($this->getItems() as $item): ?>
+            <li class="item">
+                <?php foreach ($columns as $column): ?>
+                    <?php $column->setItem($item); echo $column->toHtml($item);?>
+                <?php endforeach; ?>
+            </li>
+        <?php endforeach ?>
+    </ul>
+<?php else: ?>
+    <p class="wishlist-empty text-center"><?php echo $this->__('This Wishlist has no Items');?></p>
+<?php endif; ?>
+
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getAdditionalHtml();?>
+<?php endforeach; ?>
+<script type="text/javascript">
+//<![CDATA[
+    decorateTable('wishlist-table');
+
+<?php foreach ($columns as $column): ?>
+    <?php echo $column->getJs();?>
+<?php endforeach; ?>
+//]]>
+</script>

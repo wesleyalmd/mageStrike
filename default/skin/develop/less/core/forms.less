@@ -1,0 +1,348 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+//== Basic forms
+//
+
+
+input, select, textarea { 
+	&:extend(.form-control all);
+
+	&,
+	&:focus {
+		.box-shadow(none);
+	}
+}
+
+.has-error,
+.has-success {
+	.form-control {
+		&,
+		&:focus {
+			.box-shadow(none);
+		}
+	}
+}
+
+
+// Remove yellow bg
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+// Form group
+.input-box {
+	&:extend(.form-group all);
+	position: relative;
+}
+
+// Select wrap
+.select-wrap { position: relative;
+	&:before {
+	    .ms-icon(down, 8px, 0, 0);
+        display: inline-block;
+    	position: absolute;
+    	right: @padding-base-vertical;
+    	top:   6px;
+    	padding: (@padding-base-vertical - 1px) @padding-base-vertical @padding-base-vertical;
+    	background: @input-bg;
+    	pointer-events: none;
+	}
+}
+
+select { 
+	// rm corver
+	box-sizing: border-box;
+    width: 100%;
+    appearance: none;
+
+	option {  }
+	&.multiselect {
+		option {  }
+	}
+}
+select::-ms-expand { display: none; }
+
+textarea {
+	height: @input-height-base * 2;
+}
+
+input {
+	&.qty {  }
+	&.radio {  }
+	&.checkbox {  }
+}
+
+// Label
+label {
+	font-weight: 700;
+	&.required {
+		em {
+			float: right;
+			margin-left: 4px;
+			font-style: normal; 
+			font-size: @font-size-small; 
+			color: darken(@brand-danger, 10%);
+		}
+	}
+}
+
+p.required {
+	display: none;
+}
+
+
+//==
+
+
+
+
+//== Checkbox and Radios
+//
+
+
+// Merge magic checkbox
+.checkbox {
+	&:extend(.magic-checkbox all);
+}
+
+// Merge magic radio
+.radio {
+	&:extend(.magic-radio all);
+}
+
+
+p.control input.radio, 
+p.control input.checkbox {
+	
+}
+
+
+//==
+
+
+
+.input-range {
+
+}
+
+
+
+
+.fieldset { 
+	&:extend(fieldset all);
+
+	.legend { // on h2
+		&:extend(legend all);
+		padding-bottom: 10px;
+		font-size: 18px;
+		margin-top: 30px;
+	}
+
+	&.fieldset-last {
+		.input-box {
+			
+		}
+	}
+}
+
+
+.form-list {
+
+	li {
+		
+		&.control {
+			label {  }
+			input { 
+				&.radio    {  } 
+				&.checkbox {  }
+			}
+
+			.input-box { 
+				
+			}
+		}
+			
+		&.additional-row { 
+			.btn-remove {  }
+		}
+	}
+
+	input {  }
+	textarea {  }
+	select {  }
+
+	.wide {  }
+
+	.fields {
+		&:extend(.row all);
+		.field { &:extend(.col-xs); }
+
+		&:last-child {
+			.input-box {
+				//margin-bottom: 0;
+			}
+		}
+	}
+
+	.input-box {  }
+	.input-range {  }	
+	
+}
+
+.form-list input.input-text, 
+.form-list select {
+	width: 100% !important;
+}
+
+
+// Form list
+//
+
+
+.form-list {
+	.customer-name,
+	.customer-name-prefix,
+	.customer-name-suffix,
+	.customer-name-middlename,
+	.customer-name-prefix-suffix,
+	.customer-name-prefix-middlename,
+	.customer-name-middlename-suffix,
+	.customer-name-prefix-middlename-suffix { 
+		&:extend(.row all);
+		width: 100%;
+		margin-left: 0;
+    	margin-right: 0;
+	}
+
+	.customer-name {
+		.name-firstname,
+		.name-lastname  { &:extend(.col-xs-6); }
+	}
+
+	.customer-name-prefix {
+		.name-firstname  { &:extend(.col-xs-9); }
+		.name-lastname   { &:extend(.col-xs-12); }
+		.name-prefix     { &:extend(.col-xs-3); }
+	}
+
+	.customer-name-suffix {
+		.name-firstname  { &:extend(.col-xs-12); }
+		.name-lastname   { &:extend(.col-xs-9); }
+		.name-suffix     { &:extend(.col-xs-3); }
+	}
+
+	.customer-name-middlename {
+		.name-firstname  { &:extend(.col-xs-12); }
+		.name-middlename,
+		.name-lastname   { &:extend(.col-xs-6); }
+	}
+
+	.customer-name-prefix-suffix {
+		.name-firstname,
+		.name-lastname   { &:extend(.col-xs-9); }
+		.name-prefix,
+		.name-suffix     { &:extend(.col-xs-3); }
+	}
+
+	.customer-name-middlename-suffix {
+		.name-firstname,
+		.name-middlename { &:extend(.col-xs-6); }
+		.name-lastname   { &:extend(.col-xs-9); }
+		.name-suffix     { &:extend(.col-xs-3); }
+	}
+
+	.customer-name-prefix-middlename {
+		.name-firstname  { &:extend(.col-xs-9); }
+		.name-middlename,
+		.name-lastname   { &:extend(.col-xs-6); }
+		.name-prefix     { &:extend(.col-xs-3); }
+	}
+
+	.customer-name-prefix-middlename-suffix {
+		.name-firstname,
+		.name-lastname   { &:extend(.col-xs-9); }
+		.name-middlename { &:extend(.col-xs-12); } 
+		.name-prefix,
+		.name-suffix     { &:extend(.col-xs-3); }
+	}
+
+	.name-firstname  {  }
+	.name-middlename {  }
+	.name-lastname   {  }
+	.name-prefix     {  }
+	.name-suffix     {  }
+}
+
+.form-list .customer-dob .dob-month,
+.form-list .customer-dob .dob-day,
+.form-list .customer-dob .dob-year { float:left; width:85px; }
+.form-list .customer-dob input.input-text { display:block; width:74px; }
+.form-list .customer-dob label { font-size:10px; font-weight:normal; color:#888; }
+.form-list .customer-dob .dob-day,
+.form-list .customer-dob .dob-month { width:60px; }
+.form-list .customer-dob .dob-day input.input-text,
+.form-list .customer-dob .dob-month input.input-text { width:46px; }
+.form-list .customer-dob .dob-year { width:140px; }
+.form-list .customer-dob .dob-year input.input-text { width:134px; }
+
+
+.buttons-set {
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: @default-space 0 (@default-space / 2);
+    opacity: 1 !important;
+
+	.btn { order: 30; }
+
+	a    { order: 10; }
+
+	> p  { order: 20;
+		margin-bottom: 0; }
+}
+
+.buttons-set-order {  }
+
+
+
+// Error form
+.validation-failed { 
+	&:extend(.has-error .form-control all);
+}
+
+// Success input
+.validation-passed {
+	//&:extend(.has-success .form-control all);
+}
+
+// Help error msg
+.validation-advice {
+	&:extend(.help-block);
+    display: block;
+    color: darken(@brand-danger, 10%);
+    font-size: @font-size-small - 1px;
+    line-height: 1.1;
+}
+.input-group .validation-advice {
+	position: absolute;
+	bottom: -34px;
+}
+
+//Expiration date and CVV number validation fix 
+.v-fix { 
+	float:left;
+	.validation-advice { 
+		display:block; 
+		width:12em; 
+		margin-right:-12em; 
+		position:relative;
+	}
+}

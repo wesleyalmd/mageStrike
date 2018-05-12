@@ -1,0 +1,65 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+jQuery.noConflict();
+(function( $ ) {
+  $(function() {
+
+
+  	// Resolve conflict with Bootstrap
+	// and Magento Prototype
+	var isBootstrapEvent = false;
+	if (window.jQuery) {
+	    var all = jQuery('*');
+	    jQuery.each(['hide.bs.dropdown', 
+	        'hide.bs.collapse', 
+	        'hide.bs.modal', 
+	        'hide.bs.tooltip',
+	        'hide.bs.popover',
+	        'hide.bs.tab'], function(index, eventName) {
+	        all.on(eventName, function( event ) {
+	            isBootstrapEvent = true;
+	        });
+	    });
+	}
+	var originalHide = Element.hide;
+	Element.addMethods({
+	    hide: function(element) {
+	        if(isBootstrapEvent) {
+	            isBootstrapEvent = false;
+	            return element;
+	        }
+	        return originalHide(element);
+	    }
+	});
+
+
+	//== General
+	//
+
+	// Bootstrap - Tooltip
+	$('[data-toggle="tooltip"]').tooltip({
+	    container: 'body'
+	});
+
+	/*
+	
+	// Bootstrap - Popover
+	$('[data-toggle="popover"]').popover({
+	    container: 'body'
+	});
+
+	*/
+
+	//==
+
+
+});
+})(jQuery);

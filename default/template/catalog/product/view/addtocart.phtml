@@ -1,0 +1,31 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+	<div class="add-to-cart">
+    	<?php if(!$_product->isGrouped()): ?>
+        <label for="qty" class="sr-only"><?php echo $this->__('Qty:') ?></label>
+        <div>
+        	<div class="input-group input-group-lg">
+	        	<div class="input-group-btn">
+	        		<div class="dec qty-btn button">-</div>
+	        	</div>
+        		<input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Qty')) ?>" class="input-text qty" />
+	        	<div class="input-group-btn">
+	        		<div class="inc qty-btn button">+</div>
+	        	</div>
+	        </div>
+        </div>
+        <?php endif; ?>
+        <button type="button" title="<?php echo $buttonTitle ?>" id="product-addtocart-button" class="button btn-cart col-xs" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+        <?php echo $this->getChildHtml('', true, true) ?>
+    </div>
+<?php endif; ?>

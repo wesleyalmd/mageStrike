@@ -1,0 +1,120 @@
+/**
+ *
+ * @module:     core_base
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+// Global site notice
+//
+
+
+.global-site-notice {
+	.notice-inner {
+		
+	}
+}
+
+
+//==
+
+
+
+
+// Noscript
+//
+
+
+.noscript {
+	.notice-inner {
+		p {
+			strong {
+
+			}
+		}
+	}
+}
+
+
+//==
+
+
+
+
+//== Demo store
+//
+
+
+.demo-notice {
+	.notice-inner {
+		p {
+
+		}
+	}
+}
+
+
+
+//==
+
+
+
+
+// Cookie notice
+//
+
+
+.notice-cookie {
+	.notice-inner {
+		.notice-text {
+
+		}
+
+		.actions {
+
+		}
+	}
+}
+
+
+//==
+
+
+
+
+// Alerts
+//
+
+.messages-wrap {
+	&:extend(.container all);
+	margin-top: @default-space;
+}
+
+.messages {
+	margin: 0 0 @default-space;
+	
+	> li { margin-bottom: 0, }
+
+	ol, 
+	ul {
+		li {
+			margin: 5px 0;
+		}
+	}
+
+	.success-msg, .error-msg, .notice-msg {
+		&:extend(.alert);
+		margin-bottom: 0;
+	}
+
+	.success-msg { &:extend(.alert-success); }
+	.error-msg   { &:extend(.alert-danger);  }
+	.notice-msg  { &:extend(.alert-warning); }
+}
+
+
+//==
