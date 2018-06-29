@@ -1,0 +1,78 @@
+/**
+ *
+ * @module:     core_base
+ * @category:   design
+ * @package:    magestack_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+.button, .button2 { 
+	&:extend(.btn all);
+}
+
+&.button { 
+	&:extend(.btn-default all);
+	span { 
+		span {  }
+	}
+}
+
+&.button2 { 
+	&:extend(.btn-primary all);
+	span { 
+		span {  }
+	}
+}
+
+&.disabled {
+	span {  }
+}
+
+// Back link
+.back-link {
+	
+}
+
+
+// Edit
+.btn-edit:before      { .ms-icon(edit); }
+
+// Remove - times
+.btn-remove:before    { .ms-icon(remove); }
+
+// Remove - bin
+.btn-remove2:before   { .ms-icon(remove2); }
+
+// Add to cart
+.link-cart:before,
+.btn-cart:before      { .ms-icon(cart); }
+
+// Wishlist
+.link-wishlist:before { .ms-icon(wishlist); }
+
+// Compare
+.link-compare:before  { .ms-icon(compare); }
+
+// Print
+.link-print:before    { .ms-icon(print); }
+
+// Clear all
+.clear-all:before     { .ms-icon(remove); }
+
+
+
+//== Font Awesome and buttons
+//
+
+
+.button, .button2, 
+.btn, button { 
+	.fa-left  { margin-right: 6px; }
+	.fa-right { margin-left:  6px; }
+}
+
+
+//==
+

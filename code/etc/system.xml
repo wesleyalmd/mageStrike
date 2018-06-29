@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category    code
+ * @package     CastleWeb_MageAdvanced
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+-->
+<config>
+    <sections>
+        <general>
+            <groups>
+                <advanced_payment translate="label">
+                    <label>Advanced</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>500</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <payment_cash_discount translate="label">
+                            <label>Payment Cash Discount</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                            <comment>Discount that will be displayed on the frontend for cash payment. [%]</comment>
+                        </payment_cash_discount>
+                        <payment_plots translate="label">
+                            <label>Plots Payment</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </payment_plots>
+                        <payment_free_plots translate="label">
+                            <label>Payment Free Plots</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </payment_free_plots>
+                        <payment_plots_show translate="label">
+                            <label>Payment Show Plots</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <validate>validate-number</validate>
+                            <comment>If you offer interest-free installments, please tell us how many times.</comment>
+                        </payment_plots_show>
+                        <free_shipping_flag translate="label">
+                            <label>Show Free Shipping Flag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_shipping_flag>
+                        <free_shipping_min translate="label">
+                            <label>Min product price for free shipping</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number</validate>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_shipping_min>
+                    </fields>
+                </advanced_payment>
+            </groups>
+        </general>
+
+        <dev>
+            <groups>
+                <template>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <allow_symlink>
+                            <show_in_default>1</show_in_default>
+                            <backend_model>core/config_data</backend_model>
+                        </allow_symlink>
+                    </fields>
+                </template>
+            </groups>
+        </dev>
+    </sections>
+</config>

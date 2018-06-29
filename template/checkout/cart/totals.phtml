@@ -1,0 +1,42 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php
+/**
+ * Shopping cart totals template
+ *
+ * @see Mage_Checkout_Block_Cart_Totals
+ * @var $this Mage_Checkout_Block_Cart_Totals
+ */
+?>
+<?php if ($this->canApplyMsrp()): ?>
+    <div class="cart-msrp-totals"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></div>
+<?php else: ?>
+    <table id="shopping-cart-totals-table">
+        <col />
+        <col width="1" />
+        <tfoot>
+            <?php echo $this->renderTotals('footer'); ?>
+            <?php  ?>
+            <tr class="total-special">
+                <?php 
+                    $percent = 12;
+                    $total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
+                    $percentual = $percent / 100; // 12%
+                    $total_special = $total - ($percentual * $total);
+                 ?>
+                <td><?php echo $this->__('Total free paid'), ' (-', $percent, '%)' ?></td>
+                <td class="a-right"><span class="price"><?php echo Mage::helper('core')->currency($total_special) ?></span></td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <?php echo $this->renderTotals(); ?>
+        </tbody>
+    </table>
+<?php endif; ?>

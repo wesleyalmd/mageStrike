@@ -1,0 +1,161 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+    <?php echo $this->getMessagesBlock()->toHtml() ?>
+
+    <?php $_orders = $this->getOrders(); ?>
+    <?php if($_orders->getSize()): ?>
+        <?php $_odd = ''; ?>
+        <?php foreach ($_orders as $_order): ?>
+            <?php
+                $order_id       = $_order->getRealOrderId();
+                $order_status   = $_order->getStatusLabel();
+                $order_date     = $this->formatDate($_order->getCreatedAtStoreDate());
+                $order_shipping = $_order->getShippingMethod();
+                $order_shippingTitle  = $_order->getShippingDescription();
+                $order_track    = $_order->getTrackingNumbers();
+                $order_payment  = $_order->getPayment()->getMethodInstance()->getTitle();
+                $order_total    = $_order->formatPrice($_order->getGrandTotal());
+            ?>
+            <div class="sales-card">
+                <div class="sales-card-header">
+                    <div class="sales-card-info">
+                        <div class="row middle-xs between-xs">
+                            <div class="">
+                                <h2><?php echo $this->__('Order'), ' #', $order_id ?></h2>
+                                <span class="order-label order-label-default">
+                                    <?php echo $order_status; ?>    
+                                </span>
+                            </div>
+                            <div class="">
+                                <div class="order-price">
+                                    <span class="price"><?php echo $order_total ?></span>
+                                    <span class="payment-method"><?php echo $order_payment; ?></span>
+                                    <a href="<?php echo $this->getViewUrl($_order) ?>" class="btn btn-default"><span class="fa fa-file-o"></span> <?php echo $this->__("View Order"); ?></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sales-card-shipping">
+                        <span><span class="<?php echo $order_shipping; ?>" data-toggle="tooltip" title="<?php echo $order_shippingTitle; ?>"></span></span>
+                        <?php if ($order_status == "Pedido Realizado" || $order_status == "Pagamento Realizado" || $order_status == "Concluído"): ?>
+                            <?php if ($_order->getTracksCollection()->count()) : ?>
+                                <a href="#" onclick="popWin('<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order) ?>','trackorder','top=0,left=0,width=800,height=600,resizable=yes,scrollbars=yes'); return false;" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Track your order')) ?>" data-toggle="tooltip" data-placement="bottom"><?php echo $this->__('Track your order') ?></a>
+                            <?php else: ?>
+                                <span class="waiting-track">Aguardando...</span>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <span class="waiting-track">Sem registro</span>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="sales-card-timeline">
+                    <div class="timeline-list">
+                        <div class="timeline-item timeline-success">
+                            <div class="timeline-number">01</div>
+                            <div class="timeline-info">
+                                <strong>Pedido Realizado</strong> <br>
+                                <span><?php echo 'Em ', $order_date ?></span>
+                            </div>
+                        </div>
+
+                        <?php if ($order_status == "Pedido Realizado" || $order_status == "Pagamento Realizado" || $order_status == "Concluído"): ?>
+                        <div class="timeline-item timeline-<?php if ($order_status == "Pagamento Realizado" || $order_status == "Concluído") {
+                                echo "success"; } elseif ($order_status == "Pedido Realizado") { echo "info"; } else { echo "default"; } ?>">
+                            <div class="timeline-number">02</div>
+                            <div class="timeline-info">
+                                <strong>
+                                    <?php if ($order_status == "Pagamento Realizado" || $order_status == "Concluído") {
+                                        echo "Pagamento Realizado";
+                                    } else {
+                                        echo "Aguardando Pagamento";
+                                    } ?>
+                                </strong> <br>
+                                <span>
+                                    <?php if ($order_status == "Pagamento Realizado" || $order_status == "Concluído") {
+                                        echo "pedido liberado!";
+                                    } else {
+                                        echo "2~3 dias úteis p/confirmação";
+                                    } ?>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item timeline-<?php if ($order_status == "Concluído") { echo "success"; } elseif ($order_status == "Pagamento Realizado") {  echo "info"; } else { echo "default"; } ?>">
+                            <div class="timeline-number">03</div>
+                            <div class="timeline-info">
+                                <strong>Separação e Despache</strong> <br>
+                                <span>
+                                    <?php if ($order_status == "Concluído") { 
+                                        echo "pacote despachado!";
+                                    } elseif ($order_status == "Pagamento Realizado") { 
+                                        echo "até 4 dias úteis";
+                                    } else {
+                                        echo "aguardando pagamento";
+                                    } ?>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item timeline-<?php if ($order_status == "Concluído") { echo "success"; } else {  echo "default"; } ?>">
+                            <div class="timeline-number">04</div>
+                            <div class="timeline-info">
+                                <strong>Entrega</strong> <br>
+                                <span>
+                                    <?php if ($order_status == "Concluído") { 
+                                        echo "pedido em transporte!";
+                                    } else { 
+                                        echo "aguardando despache";
+                                    } ?>
+                                </span>
+                            </div>
+                        </div>
+                        <?php elseif ($order_status == "Cancelado"): ?>
+                            <div class="timeline-item timeline-danger">
+                                <div class="timeline-number">02</div>
+                                <div class="timeline-info">
+                                    <strong>Cancelado</strong> <br>
+                                    <span><?php echo $this->__('Help? Contact'); ?> <a href="<?php echo Mage::getUrl('contato'); ?>"><?php echo $this->__('Support'); ?></a></span>
+                                </div>
+                            </div>
+                        <?php elseif ($order_status == "Em Espera"): ?>
+                            <div class="timeline-item timeline-info">
+                                <div class="timeline-number">02</div>
+                                <div class="timeline-info">
+                                    <strong>Em Espera</strong> <br>
+                                    <span><?php echo $this->__('Help? Contact'); ?> <a href="<?php echo Mage::getUrl('contato'); ?>"><?php echo $this->__('Support'); ?></a></span>
+                                </div>
+                            </div>
+                        <?php elseif ($order_status == "Fechado"): ?>
+                            <div class="timeline-item timeline-success">
+                                <div class="timeline-number">02</div>
+                                <div class="timeline-info">
+                                    <strong>Fechado</strong> <br>
+                                    <span>Reembolso Realizado</span>
+                                </div>
+                            </div>
+                        <?php endif ?>
+
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+    <?php else: ?>
+        <p><?php echo $this->__('You have placed no orders.'); ?></p>
+    <?php endif ?>
+
+    <div class="toolbar-bottom">
+        <div class="toolbar">
+            <?php echo $this->getPagerHtml(); ?>
+        </div>
+    </div>
+</div>

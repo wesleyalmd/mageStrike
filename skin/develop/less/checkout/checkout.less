@@ -1,0 +1,98 @@
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+ //== Checkout Progress
+ //
+
+
+.checkout-progress {
+	display: flex;
+	margin: 10px 0 40px;
+
+	.checkout-block {
+		display: flex;
+		flex-basis: 33.3333%;
+		max-width:  33.3333%;
+		justify-content: center;
+
+	}
+
+	.checkout-status {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+	}
+
+	.checkout-status-active {
+		.checkout-status-nunber {
+			border-color: @brand-success;
+			background-color: @brand-success;
+			color: #fff;
+
+			&:after {
+				background-color: @brand-success;
+			}
+		}
+
+		.checkout-status-label {
+			border-color: @brand-success;
+		}
+	}
+
+	.checkout-status-nunber {
+		display: block;
+		width: 32px;
+		height: 32px;
+		border-radius: @border-radius-base;
+		border: 2px solid #ddd;
+		color: @gray-dark;
+		text-align: center;
+
+		&:after {
+			display: block;
+		    content: '';
+		    width: 3px;
+		    height: 20px;
+		    position: absolute;
+		    background: #ddd;
+		    margin-left: 13px;
+		    margin-top: 5px;
+		}
+
+		span   {
+			display: block;
+			margin-top: 4px;
+		}
+		strong {  }
+	}
+
+	.checkout-status-label {
+		width: 100%;
+		text-align: center;
+		border-top: 2px solid #ddd;
+		margin-top: 18px;
+		span   {  }
+		strong {
+			display: block;
+			margin-top: 6px;
+			font-size: 16px;
+			color: @gray-dark;
+
+			@media (max-width: @screen-xs) {
+				font-size: 13px;
+			}
+		}
+	}
+
+}
+
+ //==
+ 

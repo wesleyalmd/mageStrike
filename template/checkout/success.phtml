@@ -1,0 +1,118 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="checkout-success">
+    <?php echo $this->getMessagesBlock()->toHtml() ?>
+
+    <div class="checkout-progress">
+        <div class="checkout-block">
+            <div class="checkout-status checkout-status-active">
+                <div class="checkout-status-nunber">
+                    <span><strong>01</strong></span>
+                </div>
+
+                <div class="checkout-status-label">
+                    <span><strong><?php echo $this->__('Shopping Cart'); ?></strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-block">
+            <div class="checkout-status checkout-status-active">
+                <div class="checkout-status-nunber">
+                    <span><strong>02</strong></span>
+                </div>
+
+                <div class="checkout-status-label">
+                    <span><strong><?php echo $this->__('Payment and Shipping'); ?></strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-block">
+            <div class="checkout-status checkout-status-active">
+                <div class="checkout-status-nunber">
+                    <span><strong>03</strong></span>
+                </div>
+
+                <div class="checkout-status-label">
+                    <span><strong><?php echo $this->__('Proceed to Checkout'); ?></strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 text-center">
+        <h1><?php echo $this->__('Your order has been received.') ?></h1>   
+        <p><?php echo $this->__('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p> 
+    </div>
+
+    <?php if ($profiles = $this->getRecurringProfiles()):?>
+        <div class="col-xs-12">
+            <p><?php echo $this->__('Your recurring payment profiles:'); ?></p>
+            <ul class="disc">
+                <?php foreach($profiles as $profile):?>
+                    <?php $profileIdHtml = ($this->getCanViewProfiles() ? sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getProfileUrl($profile)), $this->escapeHtml($this->getObjectData($profile, 'reference_id'))) : $this->escapeHtml($this->getObjectData($profile, 'reference_id')));?>
+                    <li><?php echo $this->__('Payment profile # %s: "%s".', $profileIdHtml, $this->escapeHtml($this->getObjectData($profile, 'schedule_description')))?></li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+    <?php endif;?>
+
+    <?php if ($this->getOrderId()): ?>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2 checkout-success-order">
+            <div class="row middle-xs">
+                <div class="hidden-xs col-sm col-md">
+                    <button type="button" class="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue Shopping')) ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+                </div>
+
+                <div class="col-xs-6 col-sm col-md text-center">
+                    <strong class="order-id">#<?php echo $this->escapeHtml($this->getOrderId()); ?></strong>
+                </div>
+
+                <?php if ($this->getCanViewOrder()) :?>
+                    <div class="col-xs-6 col-sm col-md text-right">
+                        <?php echo $this->__(sprintf('<a href="%s" class="btn btn-default">Visualizar Pedido</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?>
+                    </div>
+                <?php endif;?>
+
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <?php 
+                            $order_id = Mage::getSingleton('checkout/session')->getLastRealOrderId(); 
+                            $order_details = Mage::getModel('sales/order')->loadByIncrementId($order_id); 
+                            $shipping_address_data = $order_details->getShippingAddress();
+                        ?>
+                        <table class="onestepcheckout-cart-table">
+                            <tbody>
+                                <?php 
+                                    foreach($order_details->getAllVisibleItems() as $item): 
+                                    $configItem = Mage::getModel('catalog/product')->loadByAttribute('sku', $item->getSku());
+                                ?>
+                                    <tr>
+                                        <td class="a-center lc-thumbnails"><img src="<?php echo $this->helper('catalog/image')->init($configItem, 'small_image')->resize(220); ?>" class="media-object" alt="<?php echo $this->getImageLabel($configItem, 'small_image'); ?>"/></td>
+                                        <td class="product-info"><h3 class="product-name"><?php echo $item->getName() ?></h3></td>
+                                        <td class="a-center"><span class="qty-cart">x<?php echo round($item->getQtyOrdered(), 0) ?></span></td>
+                                        <td class="a-right"><span class="cart-price"><span class="price"><?php echo Mage::helper("core")->currency($item->getPrice()) ?></span></span></td>
+                                    </tr>
+                                <?php endforeach ?> 
+                            </tbody>
+                            <tfoot>
+                                <?php $total = $order_details->getGrandTotal(); ?>
+                                <tr>
+                                    <td colspan="3"><strong><?php echo $this->__('Total Amount') ?></strong></td>
+                                    <td class="a-right"><strong><?php echo Mage::helper('core')->currency($total); ?></strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    <?php endif;?>
+</div>

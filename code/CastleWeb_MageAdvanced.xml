@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category    code
+ * @package     CastleWeb_MageAdvanced
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+-->
+<config>
+   <modules>
+      <CastleWeb_MageAdvanced>
+         <active>true</active>
+         <codePool>local</codePool>
+      </CastleWeb_MageAdvanced>    
+   </modules>
+</config>

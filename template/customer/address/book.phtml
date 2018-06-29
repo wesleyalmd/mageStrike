@@ -1,0 +1,115 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+    <?php echo $this->getMessagesBlock()->toHtml() ?>
+
+    <div class="page-title title-buttons">
+        <h1><?php echo $this->__('Address Book') ?></h1>
+        <div class="buttons-set">
+            <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add New Address')) ?>" class="button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span><span><?php echo $this->__('Add New Address') ?></span></span></button>
+        </div>
+    </div>
+    
+    <div class="col2-set addresses-list">
+        <div class="col-1 addresses-primary">
+            <ol class="row">
+            <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling()): ?>
+                <li class="col-xs">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><?php echo $this->__('Default Billing Address') ?></h3>
+                            <div class="panel-actions">
+                                <a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>" data-toggle="tooltip" title="<?php echo $this->__('Change Billing Address') ?>"><span class="fa fa-pencil"></span></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <address><?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?></address>
+                        </div>
+                    </div>
+                </li>
+            <?php else: ?>
+                <li class="col-xs">
+                    <div class="panel panel-default">
+                        <h3><?php echo $this->__('Default Billing Address') ?></h3>
+                    </div>
+                    <div class="panel-body">
+                        <p><?php echo $this->__('You have no default billing address in your address book.') ?></p>
+                    </div>
+                </li>
+            <?php endif ?>
+
+            <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultShipping()): ?>
+                <li class="col-xs">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><?php echo $this->__('Default Shipping Address') ?></h3>
+                            <div class="panel-actions">
+                                <a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>" data-toggle="tooltip" title="<?php echo $this->__('Change Shipping Address') ?>"><span class="fa fa-pencil"></span></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <address><?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?></address>
+                        </div>
+                    </div>
+                </li>
+            <?php else: ?>
+                <li class="col-xs">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><?php echo $this->__('Default Shipping Address') ?></h3>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <p><?php echo $this->__('You have no default shipping address in your address book.') ?></p>
+                    </div>
+                </li>
+            <?php endif ?>
+            </ol>
+        </div>
+
+        <div class="col-2 addresses-additional">
+            <h3><?php echo $this->__('Additional Address Entries') ?></h3>
+            <ol class="row">
+            <?php if($_pAddsses = $this->getAdditionalAddresses()): ?>
+                <?php foreach($_pAddsses as $_address): ?>
+                <li class="col-xs-12 col-sm-6 col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3><?php echo $_address->getName() ?></h3>
+                            <div class="panel-actions">
+                                <a href="<?php echo $this->getUrl('customer/address/edit', array('id'=>$_address->getId())) ?>" data-toggle="tooltip" title="<?php echo $this->__('Edit Address') ?>"><span class="fa fa-pencil"></span></a>
+                                <a href="#" class="link-remove" onclick="return deleteAddress('<?php echo $_address->getId() ?>');" data-toggle="tooltip" title="<?php echo $this->__('Delete Address') ?>"><span class="fa fa-trash"></span></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <address><?php echo $this->getAddressHtml($_address) ?></address>
+                        </div>
+                    </div>
+                </li>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <li class="col-xs-12 empty">
+                    <p><?php echo $this->__('You have no additional address entries in your address book.') ?></p>
+                </li>
+            <?php endif ?>
+            </ol>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    function deleteAddress(addressId) {
+        if(confirm('<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Are you sure you want to delete this address?')) ?>')) {
+            window.location='<?php echo $this->getDeleteUrl() ?>id/'+addressId;
+        }
+        return false;
+    }
+//]]>
+</script>

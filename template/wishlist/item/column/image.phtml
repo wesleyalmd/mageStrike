@@ -1,0 +1,16 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php
+	$item = $this->getItem();
+	$product = $item->getProduct();
+?>
+<a class="product-image" href="<?php echo $this->getProductUrl($item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
+    <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(420, 420); ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
+</a>

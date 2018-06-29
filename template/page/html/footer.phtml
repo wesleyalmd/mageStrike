@@ -1,0 +1,82 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="store-features">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<hr>
+			</div>
+			<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('store_features')->toHtml() ?>
+		</div>
+	</div>
+</div>
+
+<footer class="default">
+	<div class="footer-top">
+		<div class="container">
+			<div class="row middle-xs">
+				<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+					<div class="footer-contact">
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_contact')->toHtml() ?>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
+					<div class="footer-social">
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_social')->toHtml() ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-middle">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+					<div class="footer-links">
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_links')->toHtml() ?>
+					</div>
+				</div>
+
+				<div class="col-xs-12 hidden-sm col-md-4 col-lg-4">
+					<div class="footer-newsletter">
+						<h5><?php echo $this->__('Newsletter') ?></h5>
+						<?php echo $this->getChildHtml('newsletter'); ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<div class="container">
+			<div class="row middle-xs">
+				<div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
+					<div class="footer-payment">
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_payment')->toHtml() ?>
+					</div>
+				</div>
+
+				<div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+					<div class="footer-security">
+						<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer_security')->toHtml() ?>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<p class="copyright"><?php echo $this->getCopyright() ?></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

@@ -1,0 +1,27 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestack_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php if($crumbs && is_array($crumbs)): ?>
+<div class="breadcrumbs">
+    <ol>
+    <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
+        <?php if($_crumbInfo['link']): ?>
+            <li class="<?php echo $_crumbName ?>">
+                <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></a>
+            </li>
+        <?php elseif($_crumbInfo['last']): ?>
+            <li class="active">
+                <span class="hidden-xs"><?php echo $this->escapeHtml($_crumbInfo['label']) ?></span>
+                <div class="visible-xs">..</div>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    </ol>
+</div>
+<?php endif; ?>

@@ -1,0 +1,21 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestrike_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php $group = Mage::getModel('stuntcoders_banner/banner_group')->load('home_slideshow', 'code'); ?>
+<ul class="hompage-slideshow">
+	<?php foreach ($group->getBannerCollection() as $banner): ?>
+	<li>
+		<a href="<?php echo $banner->getUrl(); ?>" <?php echo $banner->getOpenInNewTab() ?  'target="_blank"' : ''; ?>>
+			<img src="<?php echo $banner->getImage(); ?>" alt="<?php echo $banner->getTitle(); ?>">
+			<?php //echo $banner->getTitle(); ?>
+			<?php //echo $banner->getContent(); ?>
+		</a>
+	</li>
+	<?php endforeach; ?>
+</ul>
