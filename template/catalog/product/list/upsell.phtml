@@ -2,7 +2,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -22,73 +22,69 @@
                     <h3 class="product-name"><a href="<?php echo $_link->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_link->getName()) ?>"><?php echo $this->escapeHtml($_link->getName()) ?></a></h3>
                     <?php echo $this->getReviewsSummaryHtml($_link) ?>
 
-                    <?php if ($_link->isGrouped()):
-                        $_associatedProducts = $_link->getTypeInstance(true)->getAssociatedProducts($_link); 
-                        $prices = [];
-                        $grouped_price = 0;
-                        $price_difference = 0;
+                    <?php if ($_link->isGrouped()): ?>
+                        <?php $_associatedProducts = $_link->getTypeInstance(true)->getAssociatedProducts($_link); ?>
+                        <?php $prices = [];
+                              $grouped_price = 0;
+                              $price_difference = 0;
 
-                        foreach($_associatedProducts as $_item) {
-                            $id = $_item->getId();
-                            $product = Mage::getModel('catalog/product')->load($id);
+                            foreach($_associatedProducts as $_link) {
+                                $id = $_link->getId();
+                                $product = Mage::getModel('catalog/product')->load($id);
+                                $prices[] = $product['price'];
 
-                            $prices[] = $product['price'];
-
-                            if ($product['special_price']) {
-                                $grouped_price += $product['special_price'];
-                                $price_difference += $product['price']-$product['special_price'];
-                            } else {
-                                $grouped_price += $product['price'];
+                                if ($product['special_price']) {
+                                    $grouped_price += $product['special_price'];
+                                    $price_difference += $product['price']-$product['special_price'];
+                                    $old_price = $grouped_price + $price_difference;
+                                } else {
+                                    $grouped_price += $product['price'];
+                                    $old_price += $product['price'];
+                                }
                             }
-                        }
-
-                        arsort($prices); // get highest price
-                        $price_array = array_keys($prices);
-                        $highest_price = $prices[$price_array[0]]; 
-                    ?>
-
-                        <?php //echo $this->__('Highest price:') ?>
-                        <?php //echo Mage::helper('core')->currency($highest_price) ?>
-
+                        ?>
                         <div class="price-box">
                             <span class="regular-price">
-                                <?php //echo $this->__('Total price for all these products:') ?>
-                                <span class="price"><?php echo Mage::helper('core')->currency($grouped_price) ?></span>
+                                <span class="price"><?php echo Mage::helper('core')->currency($grouped_price); ?></span>
                             </span>
+
+                            <?php if ($old_price): ?>
+                                <?php if ($old_price != $grouped_price): ?>
+                                    <span class="old-price">
+                                        <span class="price"><?php echo Mage::helper('core')->currency($old_price); ?></span>
+                                    </span>
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </div>
-
-                        <?php if ($price_difference): ?>
-                            <?php //echo $this->__('Total save with all these products:') ?>
-                            <?php //echo Mage::helper('core')->currency($price_difference) ?>
-                        <?php endif; ?>
-
                     <?php else: ?>
-                        <?php echo $this->getPriceHtml($_link, true, '-upsell') ?>
+                        <?php echo $this->getPriceHtml($_link, true); ?>
                     <?php endif; ?>
 
                     <?php if ($_link->isGrouped()):
                         $_finalPrice  = $grouped_price; else:
                         $_finalPrice  = $_link->getFinalPrice();
                     endif; ?>
-
+                    <?php $_paymentCashDiscount  = Mage::getStoreConfig('general/advanced_payment/payment_cash_discount'); ?>
+                    <?php $_paymentPlots         = Mage::getStoreConfig('general/advanced_payment/payment_plots'); ?>
+                    <?php $_paymentFreePlots     = Mage::getStoreConfig('general/advanced_payment/payment_free_plots'); ?>
+                    <?php $_paymentPlotsShow     = Mage::getStoreConfig('general/advanced_payment/payment_plots_show'); ?>
+                    <?php if ($_paymentFreePlots):
+                        $_paymentPlotslabel = $this->__('no tax'); else:
+                        $_paymentPlotslabel = $this->__('on credit card');
+                    endif; ?>
                     <ul class="price-new">
-                        <?php
-                            $_plots = $_link->getData('price_plots');
-                            $_plots_tax = $_link->getData('plots_tax');
-                            if($_plots != ""):
-                        ?>
+                        <?php if ($_paymentPlots): ?>
                             <li class="price-plots-block">
-                                <?php echo '<strong> '.$_plots .'x '.$this->__('of').' '.$this->helper('core')->currency($_finalPrice / $_plots, true, false).' '.$this->__('interest-free').'</strong>' ?>
+                                <?php echo '<li>' . $_paymentPlotsShow . 'x ' . $this->__('of') . ' <strong>' . $this->helper('core')->currency($_finalPrice / $_paymentPlotsShow, true, false) . '</strong> ' . $_paymentPlotslabel . '</li>'; ?>
                             </li>
                         <?php endif; ?>
                         <?php
-                            $_barcode     = $_link->getData('discount_barcode');
-                            $_calcBarcode = ($_barcode / 100) * $_finalPrice;
-                            $_calcFinal   = $this->helper('core')->currency(($_finalPrice * $_plots_tax) + $_finalPrice - $_calcBarcode, true, false);
-                            if($_barcode != ""):
+                            if($_paymentCashDiscount):
+                            $_calcDiscount = ($_paymentCashDiscount / 100) * $_finalPrice;
+                            $_calcFinal    = $this->helper('core')->currency($_finalPrice - $_calcDiscount, true, false);
                         ?>
                             <li class="price-barcode-block">
-                                <strong class="barcode-price-label"><?php echo $_barcode.'% '.' off '.$this->__('via barcode');  ?></strong>
+                                <strong class="barcode-price-label"><?php echo $_paymentCashDiscount . '% ' . $this->__('OFF cash payment'); ?></strong>
                                 <span class="special-price barcode-price"><span class="price"><?php echo $_calcFinal; ?></span></span>
                             </li>
                         <?php endif; ?>

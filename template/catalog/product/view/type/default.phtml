@@ -2,20 +2,23 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
 ?>
 <?php /* @var $this Mage_Catalog_Block_Product_View_Abstract */?>
 <?php $_product = $this->getProduct() ?>
+<div class="row clean middle-xs between-xs">
+	<?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
 
-<?php if ($this->displayProductStockStatus()): ?>
-    <?php if ($_product->isAvailable()): ?>
-        <p class="availability in-stock"><strong class="sr-only"><?php echo $this->__('Availability:') ?></strong> <span><?php echo $this->__('In stock') ?></span></p>
-    <?php else: ?>
-        <p class="availability out-of-stock"><strong class="sr-only"><?php echo $this->__('Availability:') ?></strong> <span><?php echo $this->__('Out of stock') ?></span></p>
-    <?php endif; ?>
-<?php endif; ?>
+	<?php if ($this->displayProductStockStatus()): ?>
+	    <?php if ($_product->isAvailable()): ?>
+	        <p class="availability in-stock"><strong class="sr-only"><?php echo $this->__('Availability:') ?></strong> <span><?php echo $this->__('In stock') ?></span></p>
+	    <?php else: ?>
+	        <p class="availability out-of-stock"><strong class="sr-only"><?php echo $this->__('Availability:') ?></strong> <span><?php echo $this->__('Out of stock') ?></span></p>
+	    <?php endif; ?>
+	<?php endif; ?>
+</div>
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
 <?php echo $this->getPriceHtml($_product) ?>

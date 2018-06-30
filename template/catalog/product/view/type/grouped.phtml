@@ -2,7 +2,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -12,13 +12,17 @@
 <?php $_associatedProducts = $this->getAssociatedProducts(); ?>
 <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
 
-<?php if ($this->displayProductStockStatus()): ?>
-    <?php if ($_product->isAvailable() && $_hasAssociatedProducts): ?>
-        <p class="availability in-stock"><span class="sr-only"><?php echo $this->__('Availability:') ?></span><span><?php echo $this->__('In stock') ?></span></p>
-    <?php else: ?>
-        <p class="availability out-of-stock"><span class="sr-only"><?php echo $this->__('Availability:') ?></span><span><?php echo $this->__('Out of stock') ?></span></p>
+<div class="row clean middle-xs between-xs">
+    <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+
+    <?php if ($this->displayProductStockStatus()): ?>
+        <?php if ($_product->isAvailable() && $_hasAssociatedProducts): ?>
+            <p class="availability in-stock"><span class="sr-only"><?php echo $this->__('Availability:') ?></span><span><?php echo $this->__('In stock') ?></span></p>
+        <?php else: ?>
+            <p class="availability out-of-stock"><span class="sr-only"><?php echo $this->__('Availability:') ?></span><span><?php echo $this->__('Out of stock') ?></span></p>
+        <?php endif; ?>
     <?php endif; ?>
-<?php endif; ?>
+</div>
 
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
 
@@ -68,3 +72,57 @@
         </ol>
     </div>
 <?php endif; ?>
+
+<?php $_associatedProducts = $_product->getTypeInstance(true)->getAssociatedProducts($_product); ?>
+<?php $prices = [];
+      $grouped_price = 0;
+      $price_difference = 0;
+
+    foreach($_associatedProducts as $_item) {
+        $id = $_item->getId();
+        $product = Mage::getModel('catalog/product')->load($id);
+        $prices[] = $product['price'];
+
+        if ($product['special_price']) {
+            $grouped_price += $product['special_price'];
+            $price_difference += $product['price']-$product['special_price'];
+            $old_price = $grouped_price + $price_difference;
+        } else {
+            $grouped_price += $product['price'];
+            $old_price += $product['price'];
+        }
+    }
+
+    arsort($prices); // get highest price
+    $price_array = array_keys($prices);
+    $highest_price = $prices[$price_array[0]]; 
+?>
+<?php //echo $this->__('Highest price:') ?>
+<?php //echo Mage::helper('core')->currency($highest_price) ?>
+
+<div class="price-box">
+    <div class="price-box-legend">
+        <small><span><?php echo $this->__('Total price for all these products:') ?></span></small>
+    </div>
+
+    <span class="regular-price">
+        <span class="price"><?php echo Mage::helper('core')->currency($grouped_price); ?></span>
+    </span>
+
+    <?php if ($old_price): ?>
+        <?php if ($old_price != $grouped_price): ?>
+            <span class="old-price">
+                <span class="price"><?php echo Mage::helper('core')->currency($old_price); ?></span>
+            </span>
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <?php if ($price_difference): ?>
+        <div class="price-box-diff">
+            <small><span><?php echo $this->__('Total save with all these products:') ?></span></small>
+            <span class="special-price">
+                <span class="price"><?php echo Mage::helper('core')->currency($price_difference); ?></span>
+            </span>
+        </div>
+    <?php endif; ?>
+</div>

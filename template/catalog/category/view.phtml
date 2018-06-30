@@ -2,7 +2,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     strike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -24,9 +24,6 @@
 <?php echo $this->getMessagesBlock()->toHtml() ?>
 
 <div class="page-title category-title">
-    <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
-        <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
-    <?php endif; ?>
     <h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
 </div>
 

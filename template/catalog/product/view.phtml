@@ -2,7 +2,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -12,350 +12,130 @@
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
-<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+<div id="messages_product_view">
+    <?php echo $this->getMessagesBlock()->toHtml() ?>
+</div>
 <div class="product-view">
     <div class="product-essential">
-    <form action="<?php echo $this->getSubmitUrl($_product, array('_secure' => $this->_isSecure())) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
-        <?php echo $this->getBlockHtml('formkey') ?>
-        <div class="no-display">
-            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-            <input type="hidden" name="related_product" id="related-products-field" value="" />
-        </div>
-        <div class="product-shop">
-            <div class="product-sku">
-                <span><?php echo $this->__('SKU') ?>:</span> <?php echo $_product->getData('sku'); ?></span>
+        <form action="<?php echo $this->getSubmitUrl($_product, array('_secure' => $this->_isSecure())) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+            <?php echo $this->getBlockHtml('formkey') ?>
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
             </div>
-
-            <div class="product-name">
-                <?php $_productName = $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
-                <h1><span><?php echo $_productName ?></span></h1>
-            </div>
-
-            <div class="row clean middle-xs between-xs">
-                <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
-
-                <?php if ($this->canEmailToFriend()): ?>
-                    <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
-                <?php endif; ?>
-            </div>
-
-            <?php echo $this->getChildHtml('alert_urls') ?>
-
-            <?php echo $this->getChildHtml('product_type_data') ?>
-
-            <?php if ($_product->isGrouped()):
-                $_associatedProducts = $_product->getTypeInstance(true)->getAssociatedProducts($_product);
-                $prices = [];
-                $grouped_price = 0;
-                $price_difference = 0;
-
-                foreach($_associatedProducts as $_item) {
-                    $id = $_item->getId();
-                    $product = Mage::getModel('catalog/product')->load($id);
-                    $prices[] = $product['price'];
-
-                    if ($product['special_price']) {
-                        $grouped_price += $product['special_price'];
-                        $price_difference += $product['price']-$product['special_price'];
-                        $old_price = $grouped_price + $price_difference;
-                    } else {
-                        $grouped_price += $product['price'];
-                        $old_price += $product['price'];
-                    }
-                }
-
-                arsort($prices); // get highest price
-                $price_array = array_keys($prices);
-                $highest_price = $prices[$price_array[0]]; 
-            ?>
-
-                <?php //echo $this->__('Highest price:') ?>
-                <?php //echo Mage::helper('core')->currency($highest_price) ?>
-
-                <div class="price-box">
-                    <div class="price-box-legend">
-                        <small><span><?php echo $this->__('Total price for all these products:') ?></span></small>
-                    </div>
-
-                    <span class="regular-price">
-                        <span class="price"><?php echo Mage::helper('core')->currency($grouped_price - $price_difference); ?></span>
-                    </span>
-
-                    <?php if ($old_price): ?>
-                        <?php if ($old_price != $grouped_price): ?>
-                            <span class="old-price">
-                                <span class="price"><?php echo Mage::helper('core')->currency($old_price); ?></span>
-                            </span>
-                        <?php endif; ?>
-                    <?php endif; ?>
-
-                    <?php if ($price_difference): ?>
-                        <div class="price-box-diff">
-                            <small><span><?php echo $this->__('Total save with all these products:') ?></span></small>
-                            <span class="special-price">
-                                <span class="price"><?php echo Mage::helper('core')->currency($price_difference); ?></span>
-                            </span>
-                        </div>
-                    <?php endif; ?>
+            <div class="product-shop">
+                <div class="product-sku">
+                    <span><?php echo $this->__('SKU') ?>:</span> <?php echo $_product->getData('sku'); ?></span>
                 </div>
 
-                
+                <div class="product-name">
+                    <?php $_productName = $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                    <h1><span><?php echo $_productName ?></span></h1>
+                </div>
 
-            <?php else: ?>
-                <?php echo $this->getTierPriceHtml() ?>
-            <?php endif; ?>
+                <?php echo $this->getChildHtml('alert_urls') ?>
 
-            <?php if ($_product->isGrouped()):
-                $_finalPrice  = $grouped_price; else:
-                $_finalPrice  = $_product->getFinalPrice();
-            endif; ?>
+                <?php echo $this->getChildHtml('product_type_data') ?>
 
-            <?php $_paymentCashDiscount  = Mage::getStoreConfig('general/advanced_payment/payment_cash_discount'); ?>
-            <?php $_paymentPlots         = Mage::getStoreConfig('general/advanced_payment/payment_plots'); ?>
-            <?php $_paymentFreePlots     = Mage::getStoreConfig('general/advanced_payment/payment_free_plots'); ?>
-            <?php $_paymentPlotsShow      = Mage::getStoreConfig('general/advanced_payment/payment_plots_show'); ?>
-            <?php if ($_paymentFreePlots): ?>
-                <?php $_paymentPlotslabel = 'sem juros'; ?>
-            <?php else: ?>
-                <?php $_paymentPlotslabel = 'no cartão'; ?>
-            <?php endif ?>
-            <ul class="price-new">
-                <?php if ($_paymentPlots): ?>
-                <li class="price-plots-block">
-                    <div class="simple-collapse cc-collapse">
-                        <div class="collapse-title">
-                            <div class="row middle-xs between-xs">
-                                <div class="col-xs">
-                                    <?php echo $this->__('Max plots') . ' <strong>' . $_paymentPlotsShow . 'x ' . $_paymentPlotslabel . '</strong>' ?>
-                                </div>
-                                <div class="col-xs-6 text-right">
-                                    <?php //echo $this->__('View plots') ?>
-                                    <div>
-                                        <span class="visa" data-toggle="tooltip" title="Visa">
-                                            <span class="pf pf-visa"><span class="sr-only"><?php echo $this->__('Visa') ?></span></span>
-                                        </span>
-                                        <span class="mastercard" data-toggle="tooltip" title="Mastercard">
-                                            <span class="pf pf-mastercard"><span class="sr-only"><?php echo $this->__('Mastercard') ?></span></span>
-                                        </span>
-                                        </span>
-                                        <span class="elo" data-toggle="tooltip" title="Elo">
-                                            <span class="pf pf-elo"><span class="sr-only"><?php echo $this->__('Elo') ?></span></span>
-                                        </span>
-                                        <span class="hipercard" data-toggle="tooltip" title="Hipercard">
-                                            <span class="pf pf-hipercard"><span class="sr-only"><?php echo $this->__('Hipercard') ?></span></span>
-                                        </span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="collapse-content">
-                            <ul class="table table-striped">
-                                <li><strong>1x</strong> <?php echo $this->__('of') . ' ' . $this->helper('core')->currency($_finalPrice, true, false) ?></li>
-                                <?php for ($i = 2; $i <= $_plots; $i++ ) {
-                                    echo '<li><strong>' . $i . 'x</strong> ' . $this->__('of') . ' ' . $this->helper('core')->currency(($_finalPrice * $_plots_tax) + $_finalPrice / $i, true, false) . ' ' . $this->__('') . '</li>';
-                                } ?>
-                            </ul>
-                        </div>
+                <?php echo $this->getChildHtml('extrahint') ?>
+
+                <?php echo $this->getChildHtml('product.info.payment') ?>
+
+                <?php //echo $this->getChildHtml('shipping.estimate.form') ?>
+
+                <?php if ($_product->getShortDescription()):?>
+                    <div class="short-description">
+                        <h2><?php echo $this->__('Quick Overview') ?></h2>
+                        <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
                     </div>
-                </li>
-                <?php endif; ?>
-                <?php
-                    $_paymentCash  = Mage::getStoreConfig('general/advanced_payment/payment_cash_discount');
-                    $_calcDiscount = ($_paymentCash / 100) * $_finalPrice;
-                    $_calcFinal   = $this->helper('core')->currency($_finalPrice - $_calcDiscount, true, false);
-                    if($_paymentCash != ""):
-                ?>
-                <li class="price-barcode-block">
-                    <div class="simple-collapse">
-                        <div class="collapse-title">
-                            <div class="row middle-xs between-xs">
-                                <div class="col-xs-10 row clean middle-xs">
-                                    <strong class="barcode-price-label"><?php echo $_paymentCash . '% ' . $this->__('OFF cash payment'); ?></strong>
-                                    <span class="special-price barcode-price"><span class="price"><?php echo $_calcFinal; ?></span></span>
-                                </div>
-                                <div class="col-xs-2 text-right">
-                                    <div>
-                                        <span class="barcode" data-toggle="tooltip" title="<?php echo $this->__('Barcode'); ?>">
-                                            <span class="fa fa-barcode"><span class="sr-only"><?php echo $this->__('Barcode'); ?></span></span>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="collapse-content">
-                            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('payment_cash_info')->toHtml() ?>
-                        </div>
-                    </div>
-                </li>
                 <?php endif;?>
-            </ul>
 
-            <?php echo $this->getChildHtml('extrahint') ?>
-
-            <?php echo $this->getChildHtml('shipping.estimate.form') ?>
-
-            <?php if ($_product->getShortDescription()):?>
-                <div class="short-description">
-                    <h2><?php echo $this->__('Quick Overview') ?></h2>
-                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
-                </div>
-            <?php endif;?>
-
-            <?php if (!$this->hasOptions()):?>
-                <div class="add-to-box">
-                    <?php if($_product->isSaleable()): ?>
+                <?php if (!$this->hasOptions() && $_product->isSaleable()): ?>                
+                    <div class="add-to-box">
                         <?php echo $this->getChildHtml('addtocart') ?>
-                        <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
-                            <span class="or"><?php echo $this->__('OR') ?></span>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                </div>
-                <?php echo $this->getChildHtml('extra_buttons') ?>
-            <?php elseif (!$_product->isSaleable()): ?>
-                <div class="add-to-box">
-                    <?php echo $this->getChildHtml('addto') ?>
-                </div>
-            <?php endif; ?>
+                    </div>
+                    <?php echo $this->getChildHtml('extra_buttons') ?>
+                <?php endif; ?>
 
-            <?php echo $this->getChildHtml('other');?>
+                <?php echo $this->getChildHtml('other');?>
+
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                    <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                <?php endif;?>
+
+                <div class="row between-xs">
+                    <div class="col-xs-5">
+                        <?php echo $this->getChildHtml('addto') ?>
+                    </div>
+
+                    <div class="col-xs">
+                        <?php echo $this->getChildHtml('product.info.share') ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-img-box">
+                <?php echo $this->getChildHtml('media') ?>
+            </div>
+
+            <div class="clearer"></div>
 
             <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
             <?php endif;?>
-
-            <div class="row between-xs">
-                <div class="col-xs-5">
-                    <?php echo $this->getChildHtml('addto') ?>
-                </div>
-
-                <div class="col-xs">
-                    <?php $currentUrl = Mage::helper('core/url')->getCurrentUrl() ?>
-                    <div class="sharer-list">
-                        <strong class="hidden"><?php echo $this->__("Share:") ?></strong>
-                        <ul>
-                            <li class="sharer-twitter">
-                                <a 
-                                    class="sharer" 
-                                    href="javascript:void(0)"
-                                    data-sharer="twitter" 
-                                    data-width="800" 
-                                    data-height="600" 
-                                    data-title="<?php echo $_productName ?>" 
-                                    data-url="<?php echo $currentUrl ?>"
-                                    <?php // data-via="" data-hashtags=""?>
-                                    data-toggle="tooltip"
-                                    title="Compartilhar no Twitter">
-                                    <span>Twitter</span></a>
-                            </li>
-                            <li class="sharer-facebook">
-                                <a 
-                                    class="sharer" 
-                                    href="javascript:void(0)"
-                                    data-sharer="facebook" 
-                                    data-width="800" 
-                                    data-height="600" 
-                                    data-url="<?php echo $currentUrl ?>"
-                                    data-toggle="tooltip"
-                                    title="Compartilhar no Facebook">
-                                    <span>Facebook</span></a>
-                            </li>
-                            <li class="sharer-pinterest hidden-xs">
-                                <a 
-                                    class="sharer" 
-                                    href="javascript:void(0)"
-                                    data-sharer="pinterest" 
-                                    data-width="800" 
-                                    data-height="600" 
-                                    data-url="<?php echo $currentUrl ?>" 
-                                    data-image="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(1200) ?>" 
-                                    data-description="<?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>"
-                                    data-toggle="tooltip"
-                                    title="Compartilhar no Pinterest">
-                                    <span>Pinterest</span></a>
-                            </li>
-                            <li class="sharer-whatsapp hidden-sm hidden-md hidden-lg">
-                                <a 
-                                    class="sharer" 
-                                    href="javascript:void(0)"
-                                    data-sharer="whatsapp" 
-                                    data-width="800" 
-                                    data-height="600" 
-                                    data-title="<?php echo $_productName ?>" 
-                                    data-url="<?php echo $currentUrl ?>"
-                                    data-toggle="tooltip"
-                                    title="Enviar no WhatsApp">
-                                    <span>WhatsApp</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-            
-        </div>
-
-        <div class="product-img-box">
-            <?php echo $this->getChildHtml('media') ?>
-        </div>
-
-        <div class="clearer"></div>
-        <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
-        <?php endif;?>
-    </form>
-    <script type="text/javascript">
-    //<![CDATA[
-        var productAddToCartForm = new VarienForm('product_addtocart_form');
-        productAddToCartForm.submit = function(button, url) {
-            if (this.validator.validate()) {
-                var form = this.form;
-                var oldUrl = form.action;
-
-                if (url) {
-                   form.action = url;
-                }
-                var e = null;
-                try {
-                    this.form.submit();
-                } catch (e) {
-                }
-                this.form.action = oldUrl;
-                if (e) {
-                    throw e;
-                }
-
-                if (button && button != 'undefined') {
-                    button.disabled = true;
-                }
-            }
-        }.bind(productAddToCartForm);
-
-        productAddToCartForm.submitLight = function(button, url){
-            if(this.validator) {
-                var nv = Validation.methods;
-                delete Validation.methods['required-entry'];
-                delete Validation.methods['validate-one-required'];
-                delete Validation.methods['validate-one-required-by-name'];
-                // Remove custom datetime validators
-                for (var methodName in Validation.methods) {
-                    if (methodName.match(/^validate-datetime-.*/i)) {
-                        delete Validation.methods[methodName];
-                    }
-                }
-
+        </form>
+    
+        <script type="text/javascript">
+        //<![CDATA[
+            var productAddToCartForm = new VarienForm('product_addtocart_form');
+            productAddToCartForm.submit = function(button, url) {
                 if (this.validator.validate()) {
+                    var form = this.form;
+                    var oldUrl = form.action;
+
                     if (url) {
-                        this.form.action = url;
+                       form.action = url;
                     }
-                    this.form.submit();
+                    var e = null;
+                    try {
+                        this.form.submit();
+                    } catch (e) {
+                    }
+                    this.form.action = oldUrl;
+                    if (e) {
+                        throw e;
+                    }
+
+                    if (button && button != 'undefined') {
+                        button.disabled = true;
+                    }
                 }
-                Object.extend(Validation.methods, nv);
-            }
-        }.bind(productAddToCartForm);
-    //]]>
-    </script>
+            }.bind(productAddToCartForm);
+
+            productAddToCartForm.submitLight = function(button, url){
+                if(this.validator) {
+                    var nv = Validation.methods;
+                    delete Validation.methods['required-entry'];
+                    delete Validation.methods['validate-one-required'];
+                    delete Validation.methods['validate-one-required-by-name'];
+                    // Remove custom datetime validators
+                    for (var methodName in Validation.methods) {
+                        if (methodName.match(/^validate-datetime-.*/i)) {
+                            delete Validation.methods[methodName];
+                        }
+                    }
+
+                    if (this.validator.validate()) {
+                        if (url) {
+                            this.form.action = url;
+                        }
+                        this.form.submit();
+                    }
+                    Object.extend(Validation.methods, nv);
+                }
+            }.bind(productAddToCartForm);
+        //]]>
+        </script>
     </div>
 
     <div class="product-content">
@@ -387,8 +167,6 @@
                         </dl>
                     <?php endif; ?>
                 </div>
-
-
             </div>
         </div>
     </div>

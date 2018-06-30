@@ -1,0 +1,33 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestrike_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php $_helper  = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_productName = $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+<?php $currentUrl = Mage::helper('core/url')->getCurrentUrl() ?>
+<div class="sharer-list">
+    <strong class="hidden-xs hidden-sm hidden-md"><?php echo $this->__("Share:") ?></strong>
+    <ul>
+        <li class="sharer-twitter">
+            <a class="sharer" href="javascript:void(0)" data-sharer="twitter" data-width="800" data-height="600" data-title="<?php echo $_productName ?>" data-url="<?php echo $currentUrl ?>" <?php // data-via="" data-hashtags=""?> data-toggle="tooltip" title="<?php echo $this->__('Share on Twitter') ?>"><span><?php echo $this->__('Twitter') ?></span></a>
+        </li>
+        <li class="sharer-facebook">
+            <a 
+                class="sharer" href="javascript:void(0)" data-sharer="facebook" data-width="800" data-height="600" data-url="<?php echo $currentUrl ?>" data-toggle="tooltip" title="<?php echo $this->__('Share on Facebook') ?>"> <span><?php echo $this->__('Facebook') ?></span></a>
+        </li>
+        <li class="sharer-pinterest hidden-xs">
+            <a 
+                class="sharer" href="javascript:void(0)" data-sharer="pinterest" data-width="800" data-height="600" data-url="<?php echo $currentUrl ?>" data-image="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(1200) ?>" data-description="<?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>" data-toggle="tooltip" title="<?php echo $this->__('Share on Pinterest') ?>"><span><?php echo $this->__('Pinterest'); ?></span></a>
+        </li>
+        <li class="sharer-whatsapp hidden-sm hidden-md hidden-lg">
+            <a 
+                class="sharer" href="javascript:void(0)" data-sharer="whatsapp" data-width="800" data-height="600" data-title="<?php echo $_productName ?>" data-url="<?php echo $currentUrl ?>" data-toggle="tooltip" title="<?php echo $this->__('Share on Whatsapp') ?>"><span><?php echo $this->__('Whatsapp') ?></span></a>
+        </li>
+    </ul>
+</div>

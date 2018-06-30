@@ -1,7 +1,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */

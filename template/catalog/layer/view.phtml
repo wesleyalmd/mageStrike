@@ -2,7 +2,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     strike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -25,7 +25,7 @@
                 <?php foreach ($_filters as $_filter): ?>
                 <?php if($_filter->getItemsCount()): ?>
                     <h5><?php echo $this->__($_filter->getName()) ?></h5>
-                    <div><?php echo $_filter->getHtml() ?></div>
+                    <div class="block-wrapper"><?php echo $_filter->getHtml() ?></div>
                 <?php endif; ?>
                 <?php endforeach; ?>
             </div>

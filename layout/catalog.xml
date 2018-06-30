@@ -210,6 +210,12 @@ Product view
                     <label>Product View Extra Hint</label>
                 </block>
 
+                <!-- Payment info -->
+                <block type="catalog/product_view" name="product.info.payment" template="catalog/product/view/payment.phtml"/>
+
+                <!-- Sharer -->
+                <block type="catalog/product_view" name="product.info.share" template="catalog/product/view/share.phtml"/>
+
                 <!-- Product options -->
                 <block type="catalog/product_view" name="product.info.options.wrapper" as="product_options_wrapper" template="catalog/product/view/options/wrapper.phtml" translate="label">
                     <label>Info Column Options Wrapper</label>

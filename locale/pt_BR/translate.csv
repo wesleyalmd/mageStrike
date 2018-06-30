@@ -1,3 +1,4 @@
+"Add New Banner", "Adicionar Novo Banner"
 "Add", "Adcionar"
 "Add All to Cart", "Comprar Todos"
 "Address line 2", "Número"
@@ -46,7 +47,6 @@
 "Card Verification Number" "CSV"
 "You may also be interested in the following product(s)", "Veja Também"
 "Track your order", "Rastrear Pedido"
-
 "Payment Cash Discount", "Desconto Pagamento à vista"
 "Discount that will be displayed on the frontend for cash payment. [%]", "Desconto em [%] que será exibido no frontend para pagamento à vista."
 "Payment Free Plots", "Exibir parcelamento sem juros"
@@ -55,3 +55,10 @@
 "Show Free Shipping Flag", "Exibir label de frete grátis"
 "Min product price for free shipping.", "Valor mínimo do produto para frete grátis."
 "OFF cash payment", "OFF via boleto"
+"Share on Twitter", "Compartilhar no Twitter"
+"Share on Facebook", "Compartilhar no Facebook"
+"Share on Pinterest", "Compartilhar no Pinterest"
+"Share on Whatsapp", "Enviar no WhatsApp"
+"no tax", "sem juros"
+"on credit card", "no cartão"
+"of", "de"

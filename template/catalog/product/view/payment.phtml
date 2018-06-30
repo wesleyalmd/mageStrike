@@ -1,0 +1,118 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestrike_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php if ($_product->isGrouped()): ?>
+    <?php $_associatedProducts = $_product->getTypeInstance(true)->getAssociatedProducts($_product); ?>
+    <?php $prices = [];
+          $grouped_price = 0;
+          $price_difference = 0;
+
+        foreach($_associatedProducts as $_item) {
+            $id = $_item->getId();
+            $product = Mage::getModel('catalog/product')->load($id);
+            $prices[] = $product['price'];
+
+            if ($product['special_price']) {
+                $grouped_price += $product['special_price'];
+                $price_difference += $product['price']-$product['special_price'];
+                $old_price = $grouped_price + $price_difference;
+            } else {
+                $grouped_price += $product['price'];
+                $old_price += $product['price'];
+            }
+        }
+        arsort($prices); // get highest price
+        $price_array = array_keys($prices);
+        $highest_price = $prices[$price_array[0]];
+    ?>
+    <?php $_finalPrice = $grouped_price; ?>
+<?php else: ?>
+    <?php $_finalPrice = $_product->getFinalPrice(); ?>
+<?php endif; ?>
+<?php $_paymentCashDiscount  = Mage::getStoreConfig('general/advanced_payment/payment_cash_discount'); ?>
+<?php $_paymentPlots         = Mage::getStoreConfig('general/advanced_payment/payment_plots'); ?>
+<?php $_paymentFreePlots     = Mage::getStoreConfig('general/advanced_payment/payment_free_plots'); ?>
+<?php $_paymentPlotsShow     = Mage::getStoreConfig('general/advanced_payment/payment_plots_show'); ?>
+<?php if ($_paymentFreePlots): ?>
+    <?php $_paymentPlotslabel = $this->__('no tax'); ?>
+<?php else: ?>
+    <?php $_paymentPlotslabel = $this->__('on credit card'); ?>
+<?php endif ?>
+<ul class="price-new">
+    <?php if ($_paymentPlots): ?>
+    <li class="price-plots-block">
+        <div class="simple-collapse cc-collapse">
+            <div class="collapse-title">
+                <div class="row middle-xs between-xs">
+                    <div class="col-xs">
+                        <?php echo $this->__('Max plots') . ' <strong>' . $_paymentPlotsShow . 'x ' . $_paymentPlotslabel . '</strong>' ?>
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <?php //echo $this->__('View plots') ?>
+                        <div>
+                            <span class="visa" data-toggle="tooltip" title="Visa">
+                                <span class="pf pf-visa"><span class="sr-only"><?php echo $this->__('Visa') ?></span></span>
+                            </span>
+                            <span class="mastercard" data-toggle="tooltip" title="Mastercard">
+                                <span class="pf pf-mastercard"><span class="sr-only"><?php echo $this->__('Mastercard') ?></span></span>
+                            </span>
+                            </span>
+                            <span class="elo" data-toggle="tooltip" title="Elo">
+                                <span class="pf pf-elo"><span class="sr-only"><?php echo $this->__('Elo') ?></span></span>
+                            </span>
+                            <span class="hipercard" data-toggle="tooltip" title="Hipercard">
+                                <span class="pf pf-hipercard"><span class="sr-only"><?php echo $this->__('Hipercard') ?></span></span>
+                            </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="collapse-content">
+                <ul class="table table-striped">
+                    <li><strong>1x</strong> <?php echo $this->__('of') . ' ' . $this->helper('core')->currency($_finalPrice, true, false) ?></li>
+                    <?php for ($i = 2; $i <= $_paymentPlotsShow; $i++ ) {
+                        echo '<li><strong>' . $i . 'x</strong> ' . $this->__('of') . ' ' . $this->helper('core')->currency($_finalPrice / $i, true, false) . ' ' . $this->__('') . '</li>';
+                    } ?>
+                </ul>
+            </div>
+        </div>
+    </li>
+    <?php endif; ?>
+    <?php
+        if($_paymentCashDiscount):
+        $_calcDiscount = ($_paymentCashDiscount / 100) * $_finalPrice;
+        $_calcFinal    = $this->helper('core')->currency($_finalPrice - $_calcDiscount, true, false);
+    ?>
+    <li class="price-barcode-block">
+        <div class="simple-collapse">
+            <div class="collapse-title">
+                <div class="row middle-xs between-xs">
+                    <div class="col-xs-10 row clean middle-xs">
+                        <strong class="barcode-price-label"><?php echo $_paymentCashDiscount . '% ' . $this->__('OFF cash payment'); ?></strong>
+                        <span class="special-price barcode-price"><span class="price"><?php echo $_calcFinal; ?></span></span>
+                    </div>
+                    <div class="col-xs-2 text-right">
+                        <div>
+                            <span class="barcode" data-toggle="tooltip" title="<?php echo $this->__('Barcode'); ?>">
+                                <span class="fa fa-barcode"><span class="sr-only"><?php echo $this->__('Barcode'); ?></span></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse-content">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('payment_cash_info')->toHtml() ?>
+            </div>
+        </div>
+    </li>
+    <?php endif;?>
+</ul>
