@@ -10,12 +10,145 @@
 -->
 <config>
     <sections>
-        <general>
+        <design>
             <groups>
-                <advanced_payment translate="label">
-                    <label>Advanced</label>
+                <payment_flags translate="label">
+                    <label>Payment Flags</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>500</sort_order>
+                    <sort_order>540</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <flag_visa translate="label">
+                            <label>Visa</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_visa>
+                        <flag_mastercard translate="label">
+                            <label>Mastercard</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_mastercard>
+                        <flag_elo translate="label">
+                            <label>Elo</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_elo>
+                        <flag_american translate="label">
+                            <label>American Express</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_american>
+                        <flag_diners translate="label">
+                            <label>Diners</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_diners>
+                        <flag_hipercard translate="label">
+                            <label>Hipercard</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_hipercard>
+                        <flag_jcb translate="label">
+                            <label>JCB</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_jcb>
+                        <flag_boleto translate="label">
+                            <label>Boleto</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_boleto>
+                        <flag_itau translate="label">
+                            <label>Itau</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </flag_itau>
+                    </fields>
+                </payment_flags>
+                <social translate="label">
+                    <label>Social icons</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>550</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <facebook translate="label">
+                            <label>Facebook</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </facebook>
+                        <instagram translate="label">
+                            <label>Instagram</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </instagram>
+                        <twitter translate="label">
+                            <label>Twitter</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </twitter>
+                        <pinterest translate="label">
+                            <label>Pinterest</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pinterest>
+                    </fields>
+                </social>
+                <advanced_payment translate="label">
+                    <label>Payment Rules</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>700</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -58,28 +191,76 @@
                             <validate>validate-number</validate>
                             <comment>If you offer interest-free installments, please tell us how many times.</comment>
                         </payment_plots_show>
-                        <free_shipping_flag translate="label">
-                            <label>Show Free Shipping Flag</label>
+                    </fields>
+                </advanced_payment>
+                <advanced_shipping translate="label">
+                    <label>Shipping Rules</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>750</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <free_shipping translate="label">
+                            <label>Min product price for free shipping</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number</validate>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Leave blank for disabled.</comment>
+                        </free_shipping>
+                    </fields>
+                </advanced_shipping>
+                <security translate="label">
+                    <label>Security</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>600</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <google translate="label">
+                            <label>Google Safe</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </google>
+                        <comodo translate="label">
+                            <label>Comodo</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </comodo>
+                        <geotrust translate="label">
+                            <label>Geo Trust</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </geotrust>
+                        <verisign translate="label">
+                            <label>Verisign</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>40</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </free_shipping_flag>
-                        <free_shipping_min translate="label">
-                            <label>Min product price for free shipping</label>
-                            <frontend_type>text</frontend_type>
-                            <validate>validate-number</validate>
-                            <sort_order>50</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                        </free_shipping_min>
+                        </verisign>
                     </fields>
-                </advanced_payment>
+                </security>
             </groups>
-        </general>
+        </design>
 
         <dev>
             <groups>

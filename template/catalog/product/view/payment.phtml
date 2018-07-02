@@ -36,10 +36,10 @@
 <?php else: ?>
     <?php $_finalPrice = $_product->getFinalPrice(); ?>
 <?php endif; ?>
-<?php $_paymentCashDiscount  = Mage::getStoreConfig('general/advanced_payment/payment_cash_discount'); ?>
-<?php $_paymentPlots         = Mage::getStoreConfig('general/advanced_payment/payment_plots'); ?>
-<?php $_paymentFreePlots     = Mage::getStoreConfig('general/advanced_payment/payment_free_plots'); ?>
-<?php $_paymentPlotsShow     = Mage::getStoreConfig('general/advanced_payment/payment_plots_show'); ?>
+<?php $_paymentCashDiscount  = Mage::getStoreConfig('design/advanced_payment/payment_cash_discount'); ?>
+<?php $_paymentPlots         = Mage::getStoreConfig('design/advanced_payment/payment_plots'); ?>
+<?php $_paymentFreePlots     = Mage::getStoreConfig('design/advanced_payment/payment_free_plots'); ?>
+<?php $_paymentPlotsShow     = Mage::getStoreConfig('design/advanced_payment/payment_plots_show'); ?>
 <?php if ($_paymentFreePlots): ?>
     <?php $_paymentPlotslabel = $this->__('no tax'); ?>
 <?php else: ?>

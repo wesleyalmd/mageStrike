@@ -64,10 +64,10 @@
                         $_finalPrice  = $grouped_price; else:
                         $_finalPrice  = $_link->getFinalPrice();
                     endif; ?>
-                    <?php $_paymentCashDiscount  = Mage::getStoreConfig('general/advanced_payment/payment_cash_discount'); ?>
-                    <?php $_paymentPlots         = Mage::getStoreConfig('general/advanced_payment/payment_plots'); ?>
-                    <?php $_paymentFreePlots     = Mage::getStoreConfig('general/advanced_payment/payment_free_plots'); ?>
-                    <?php $_paymentPlotsShow     = Mage::getStoreConfig('general/advanced_payment/payment_plots_show'); ?>
+                    <?php $_paymentCashDiscount  = Mage::getStoreConfig('design/advanced_payment/payment_cash_discount'); ?>
+                    <?php $_paymentPlots         = Mage::getStoreConfig('design/advanced_payment/payment_plots'); ?>
+                    <?php $_paymentFreePlots     = Mage::getStoreConfig('design/advanced_payment/payment_free_plots'); ?>
+                    <?php $_paymentPlotsShow     = Mage::getStoreConfig('design/advanced_payment/payment_plots_show'); ?>
                     <?php if ($_paymentFreePlots):
                         $_paymentPlotslabel = $this->__('no tax'); else:
                         $_paymentPlotslabel = $this->__('on credit card');
@@ -98,9 +98,6 @@
                         <?php endif; ?>
                         <ul class="add-to-links">
                             <?php echo Mage::helper('netgo_gwishlist')->getUrl($_link); ?>
-                            <?php if($_compareUrl=$this->getAddToCompareUrl($_link)): ?>
-                                <li><a href="<?php echo $_compareUrl ?>" class="link-compare" data-toggle="tooltip" data-placement="bottom" title="<?php echo $this->__('Add to Compare') ?>"><?php echo $this->__('Add to Compare') ?></a></li>
-                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
