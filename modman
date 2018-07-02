@@ -2,7 +2,6 @@ layout              app/design/frontend/magestrike/default/layout
 template            app/design/frontend/magestrike/default/template
 locale              app/design/frontend/magestrike/default/locale
 skin/public/*       skin/frontend/magestrike/default/
-media/magestrike/*  media/magestrike/
 
 #Last jQuery version 3.2.1
 skin/public/js/jquery.min.js js/lib/jquery.min.js
@@ -13,3 +12,4 @@ media/placeholder/* media/catalog/product/placeholder/default/
 #Advanced Settings
 code/CastleWeb_MageAdvanced.xml app/etc/modules/CastleWeb_MageAdvanced.xml
 code/etc/* app/code/local/CastleWeb/MageAdvanced/etc/
+code/locale/pt_BR/* app/locale/pt_BR/

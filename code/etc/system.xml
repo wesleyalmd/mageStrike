@@ -276,4 +276,16 @@
             </groups>
         </dev>
     </sections>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <CastleWeb_MageAdvanced>
+                    <files>
+                        <default>CastleWeb_MageAdvanced.csv</default>
+                    </files>
+                </CastleWeb_MageAdvanced>
+            </modules>
+        </translate>
+    </adminhtml>
 </config>
