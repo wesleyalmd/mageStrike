@@ -545,6 +545,12 @@
 				.out-of-stock  {
 					span span { &:before { .ms-icon(remove, 18px, 0, 0); } }
 				}
+
+				@media (max-width: @screen-xs) {
+					position: absolute;
+					left: 10px;
+					bottom: 10px;
+				}
 			}
 		}
 	}
