@@ -2,7 +2,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -26,9 +26,9 @@
             <?php  ?>
             <tr class="total-special">
                 <?php 
-                    $percent = 12;
+                    $percent = Mage::getStoreConfig('design/advanced_payment/payment_cash_discount');
                     $total = $this->helper('checkout/cart')->getQuote()->getGrandTotal();
-                    $percentual = $percent / 100; // 12%
+                    $percentual = $percent / 100;
                     $total_special = $total - ($percentual * $total);
                  ?>
                 <td><?php echo $this->__('Total free paid'), ' (-', $percent, '%)' ?></td>

@@ -209,7 +209,6 @@ jQuery.noConflict();
 	//== jQuery mask
 	//
 
-	/*
 
     $("[for='billing:taxvat']").parent().find(".input-text").addClass("input-vat");
 
@@ -227,7 +226,6 @@ jQuery.noConflict();
 	   }
 	});
 
-	*/
 
 	//==
 

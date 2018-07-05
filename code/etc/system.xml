@@ -214,7 +214,7 @@
                     </fields>
                 </advanced_shipping>
                 <security translate="label">
-                    <label>Security</label>
+                    <label>Security Seals</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>600</sort_order>
                     <show_in_default>1</show_in_default>
@@ -261,7 +261,6 @@
                 </security>
             </groups>
         </design>
-
         <dev>
             <groups>
                 <template>
@@ -276,16 +275,4 @@
             </groups>
         </dev>
     </sections>
-
-    <adminhtml>
-        <translate>
-            <modules>
-                <CastleWeb_MageAdvanced>
-                    <files>
-                        <default>CastleWeb_MageAdvanced.csv</default>
-                    </files>
-                </CastleWeb_MageAdvanced>
-            </modules>
-        </translate>
-    </adminhtml>
 </config>

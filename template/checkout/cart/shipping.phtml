@@ -2,7 +2,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -49,7 +49,7 @@
                     <label for="postcode"<?php if ($this->isZipCodeRequired()) echo ' class="required"' ?>><?php if ($this->isZipCodeRequired()) echo '<em>*</em>' ?><?php echo $this->__('Zip/Postal Code') ?></label>
                     <div class="input-box">
                         <div class="input-group">
-                            <input class="input-text validate-postcode<?php if ($this->isZipCodeRequired()):?> required-entry<?php endif;?>" type="text" id="postcode" name="estimate_postcode" value="<?php echo $this->escapeHtml($this->getEstimatePostcode()) ?>" />
+                            <input class="input-text input-zip validate-postcode<?php if ($this->isZipCodeRequired()):?> required-entry<?php endif;?>" type="text" id="postcode" name="estimate_postcode" value="<?php echo $this->escapeHtml($this->getEstimatePostcode()) ?>" />
                             <div class="input-group-btn">
                                 <button class="btn btn-default" onclick="popWin('http://www.buscacep.correios.com.br/sistemas/buscacep/', 'I forgot my zipcode', 'width=360,height=370,left=200,top=50,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;" type="button" data-toggle="tooltip" title="Qual o meu CEP?"><span class="fa fa-question"></span></button>
                                 <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Get a Quote')) ?>" onclick="coShippingMethodForm.submit()" class="button"><span><span><?php echo $this->__('Get a Quote') ?></span></span></button>

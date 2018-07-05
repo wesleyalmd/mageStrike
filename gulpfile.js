@@ -27,8 +27,8 @@ var gulp          = require('gulp'),
 //== Variables
 //
 
-var path_dev      = 'default/skin/develop',
-    path_public   = 'default/skin/public';
+var path_dev      = 'skin/develop',
+    path_public   = 'skin/public';
 
 //==
 
@@ -42,7 +42,7 @@ gulp.task('js_core', function() {
     gulp.src('bower_components/Formstone/src/js/mediaquery.js'),
     gulp.src('bower_components/slick-carousel/slick/slick.js'),
     gulp.src('bower_components/sharer.js/sharer.js'),
-    //gulp.src('bower_components/jquery-mask-plugin/src/jquery.mask.js'),
+    gulp.src('bower_components/jquery-mask-plugin/src/jquery.mask.js'),
     gulp.src(path_dev + '/js/core.js')
   )
   .pipe(concat('core.min.js'))
@@ -92,7 +92,6 @@ gulp.task('js_custom', function() {
 gulp.task('js_product', function() {
   return streamqueue({ objectMode: true },
     gulp.src('bower_components/easyzoom/dist/easyzoom.js'),
-    //gulp.src(path_dev + '/bower_components/sharer.js/sharer.js'),
     gulp.src(path_dev + '/js/product.js')
   )
   .pipe(concat('product.min.js'))
