@@ -34,8 +34,20 @@
                     <?php echo $this->escapeHtml($this->getMethodTitle($_method)) ?> 
                     <?php echo $this->getMethodLabelAfterHtml($_method) ?>
                     <span class="payment-subtitle p_method_<?php echo $_code ?>">
-                        <?php if ($_code == 'banktransfer'): ?>
-                            <?php echo "12% OFF"; ?>
+                        <?php if ($_code == 'banktransfer' || $_code == 'cashondelivery'): ?>
+                            <?php $_paymentCash = Mage::getStoreConfig('design/advanced_payment/payment_cash_discount'); ?>
+                            <strong><?php echo $_paymentCash . $this->__('% off') ?></strong>
+                        <?php else: ?>
+                            <?php $_paymentPlots = Mage::getStoreConfig('design/advanced_payment/payment_plots'); ?>
+                            <?php $_paymentFreePlots = Mage::getStoreConfig('design/advanced_payment/payment_free_plots'); ?>
+                            <?php $_paymentShow = Mage::getStoreConfig('design/advanced_payment/payment_plots_show'); ?>
+                            <?php  if ($_paymentFreePlots) {
+                                $_paymentTax = $this->__('no tax'); } else {
+                                $_paymentTax = $this->__('on credit card'); } 
+                            ?>
+                            <?php if ($_paymentPlots): ?>
+                                <span><?php echo $_paymentShow . 'x ' . $_paymentTax; ?></span>
+                            <?php endif ?>
                         <?php endif ?>
                     </span>
                 </label>

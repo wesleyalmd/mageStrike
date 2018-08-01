@@ -16,7 +16,7 @@
 		<?php if($wlid > 0){ ?>
 			<li><a href="<?php echo Mage::getBaseUrl().'gwishlist/gwishlist/updategwishlist'; ?>/item/<?php echo $wlid; ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><?php echo $this->__('Update') ?></a></li>
 		<?php } else { ?>
- 			<li><a href="<?php echo Mage::getBaseUrl().'gwishlist/gwishlist/add'; ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><span><?php echo $this->__('Add to Wishlist') ?></span></a></li>
+ 			<li><a href="<?php echo Mage::getBaseUrl().'gwishlist/gwishlist/add'; ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><span class="hidden-md hidden-lg"><?php echo $this->__('Wishlist') ?></span><span class="hidden-xs hidden-sm"><?php echo $this->__('Add to Wishlist') ?></span></a></li>
 	 	<?php } ?>
 	<?php else: ?>
 		<?php if ($this->helper('wishlist')->isAllow()): ?>

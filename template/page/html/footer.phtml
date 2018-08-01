@@ -16,7 +16,7 @@
 			</div>
 			<?php $_shippingFree = Mage::getStoreConfig('design/advanced_shipping/free_shipping'); ?>
 			<?php if ($_shippingFree): ?>
-				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 					<div class="feature-box">
 						<div class="feature-icon">
 							<span class="feature-icon-shipping"></span>
@@ -31,7 +31,7 @@
 			
 			<?php $_paymentCash = Mage::getStoreConfig('design/advanced_payment/payment_cash_discount'); ?>
 			<?php if ($_paymentCash): ?>
-				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
 					<div class="feature-box">
 						<div class="feature-icon">
 							<span class="feature-icon-barcode"></span>
@@ -52,20 +52,20 @@
 				$_paymentTax = $this->__('on credit card'); } 
 			?>
 			<?php if ($_paymentPlots): ?>
-				<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3">
+				<div class="hidden-xs col-sm-4 col-md-4 col-lg-3">
 					<div class="feature-box">
 						<div class="feature-icon">
 							<span class="feature-icon-credit-card"></span>
 						</div>
 						<div class="feature-content">
-							<strong>Parcele em até</strong>
+							<strong><?php echo $this->__('Max plots'); ?></strong>
 							<span><?php echo $_paymentShow . 'x ' . $_paymentTax; ?></span>
 						</div>
 					</div>
 				</div>
 			<?php endif; ?>
 				
-			<div class="hidden-xs hidden-sm col-md-3 col-lg-3">
+			<div class="hidden-xs hidden-sm hidden-md col-lg-3">
 				<div class="feature-box">
 					<div class="feature-icon">
 						<span class="feature-icon-warranty"></span>
