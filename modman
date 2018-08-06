@@ -13,3 +13,6 @@ media/placeholder/* media/catalog/product/placeholder/default/
 code/CastleWeb_MageAdvanced.xml app/etc/modules/CastleWeb_MageAdvanced.xml
 code/etc/* app/code/local/CastleWeb/MageAdvanced/etc/
 code/locale/pt_BR/* app/locale/pt_BR/
+
+#Banners
+media/banner/slideshow.jpg media/stuntcoders/banner/slideshow.jpg
