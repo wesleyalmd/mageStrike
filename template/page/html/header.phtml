@@ -7,6 +7,7 @@
  *
  */
 ?>
+<?php $favouritelist = $data = unserialize($_COOKIE['gwishlist']); ?>
 <header class="default">
     <div class="header-top">
         <div class="container">
@@ -19,14 +20,18 @@
                             <a href="javascript:void(0);" class="push-wishlist">
                                 <span>
                                     <strong><?php echo $this->__('Wishlist'); ?></strong>
-                                    <sup><?php 
+                                    <sup>
+                                    <?php 
                                         if(!Mage::getSingleton('customer/session')->isLoggedIn()){
-                                            $favouritelist = $data = unserialize($_COOKIE['gwishlist']);
-                                            echo count($favouritelist);
+                                            if(count($favouritelist) > 0 and $favouritelist != ''){
+                                                echo count($favouritelist);
+                                            } else {
+                                                echo "0";
+                                            }
                                         }else{
                                             echo $this->helper('wishlist')->getItemCount();
-                                        }
-                                    ?></sup>
+                                    } ?>
+                                    </sup>
                                 </span>
                             </a>
                         </div>
@@ -96,14 +101,18 @@
                                 <a href="javascript:void(0);" class="push-wishlist">
                                     <span>
                                         <strong><?php echo $this->__('Wishlist'); ?></strong>
-                                        <sup><?php 
+                                        <sup>
+                                        <?php 
                                             if(!Mage::getSingleton('customer/session')->isLoggedIn()){
-                                                $favouritelist = $data = unserialize($_COOKIE['gwishlist']);
-                                                echo count($favouritelist);
+                                                if(count($favouritelist) > 0 and $favouritelist != ''){
+                                                    echo count($favouritelist);
+                                                } else {
+                                                    echo "0";
+                                                }
                                             }else{
                                                 echo $this->helper('wishlist')->getItemCount();
-                                            }
-                                        ?></sup>
+                                        } ?>
+                                        </sup>
                                     </span>
                                 </a>
                           </div>

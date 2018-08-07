@@ -1,7 +1,7 @@
 /**
  *
  * @category:   design
- * @package:    magestack_default
+ * @package:    magestrike_default
  * @author:     Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -166,87 +166,4 @@ dl {
 	}
 }
 
-
-// Social icons
-.social-icons {
-	li { 
-		margin-right: 10px;
-		font-size: 0;
-
-		&:last-child { margin-right: 0; }
-
-		a {
-		    display: flex;
-		    width: 36px;
-		    height: 36px;
-		    border: 2px solid @brand-primary;
-		    border-radius: 100%;
-		    justify-content: center;
-		    align-items: center;
-		}
-	}
-
-	.facebook  { a { &:before { .ms-icon(facebook,  14px, 0, 0); } } }
-	.twitter   { a { &:before { .ms-icon(twitter,   14px, 0, 0); } } }
-	.instagram { a { &:before { .ms-icon(instagram, 14px, 0, 0); } } }
-	.google    { a { &:before { .ms-icon(google,    14px, 0, 0); } } }
-	.pinterest { a { &:before { .ms-icon(pinterest, 14px, 0, 0); } } }
-
-	@media (max-width: @screen-xs) {
-	    display: flex;
-    	justify-content: center;
-    	flex-wrap: wrap;
-
-    	li { margin: 0 5px 0; }
-	}
-}
-
-
-//==
-
-
-
-
-//== Payment icons
-//
-
-
-.payment-icons {
-	li {
-		margin-right: @default-space / 2;
-		&:last-child { margin-right: 0; }
-
-		span {
-			font-size: 0;
-			float: left;
-
-			&:before {
-				font-family: "PaymentFont";
-				font-size: 20px;
-			}
-		}
-	}
-
-	.visa             { span { &:before { content: @pf-var-visa;             } } }
-	.mastercard       { span { &:before { content: @pf-var-mastercard-alt;   } } }
-	.elo              { span { &:before { content: @pf-var-elo-alt;          } } }
-	.american-express { span { &:before { content: @pf-var-american-express; } } }
-	.diners           { span { &:before { content: @pf-var-diners;           } } }
-	.hipercard        { span { &:before { content: @pf-var-hipercard;        } } }
-	.jcb              { span { &:before { content: @pf-var-jcb;              } } }
-	.diners           { span { &:before { content: @pf-var-diners;           } } }
-
-	.boleto {
-		margin-left: 4px;
-		span:before {
-			font-family: "FontAwesome";
-			content: @fa-var-barcode;
-			font-size: 24px;
-			line-height: 28px;
-		}
-	}
-}
-
-
-//==
 

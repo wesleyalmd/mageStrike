@@ -3,7 +3,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -367,15 +367,12 @@ Additional block dependant on product type
         </reference>
     </PRODUCT_TYPE_virtual>
 
-
-
 <!--
 Product send to friend
--->
 
     <catalog_product_send translate="label">
         <label>Catalog Product Email to a Friend</label>
-        <!-- Mage_Catalog -->
+        
         <reference name="root">
             <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
         </reference>
@@ -388,6 +385,8 @@ Product send to friend
             </block>
         </reference>
     </catalog_product_send>
+
+-->
 
 <!--
 Product additional images gallery popup

@@ -1,0 +1,51 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestrike_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+//== Social icons
+//
+
+
+.social-icons {
+	li { 
+		margin-right: 10px;
+		font-size: 0;
+
+		&:last-child { margin-right: 0; }
+
+		a {
+		    display: flex;
+		    width: 36px;
+		    height: 36px;
+		    border: 2px solid @brand-primary;
+		    border-radius: 100%;
+		    justify-content: center;
+		    align-items: center;
+		}
+	}
+
+	.facebook  { a { &:before { .ms-icon(facebook,  14px, 0, 0);   } } }
+	.twitter   { a { &:before { .ms-icon(twitter,   14px, 0, 0);   } } }
+	.instagram { a { &:before { .ms-icon(instagram, 14px, 0, 0);   } } }
+	.google    { a { &:before { .ms-icon(google,    14px, 0, 0);   } } }
+	.pinterest { a { &:before { .ms-icon(pinterest, 14px, 0, 0);   } } }
+	.google    { a { &:before { .ms-icon(google-plus, 14px, 0, 0); } } }
+
+	@media (max-width: @screen-xs) {
+	    display: flex;
+    	justify-content: center;
+    	flex-wrap: wrap;
+
+    	li { margin: 0 5px 0; }
+	}
+}
+
+
+//==
+

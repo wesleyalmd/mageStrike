@@ -1,0 +1,53 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestrike_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="payment-icons">
+	<ul>
+		<?php $_paymentVisa       = Mage::getStoreConfig('design/payment_flags/flag_visa'); ?>
+		<?php $_paymentMastercard = Mage::getStoreConfig('design/payment_flags/flag_mastercard'); ?>
+		<?php $_paymentElo        = Mage::getStoreConfig('design/payment_flags/flag_elo'); ?>
+		<?php $_paymentAmerican   = Mage::getStoreConfig('design/payment_flags/flag_american'); ?>
+		<?php $_paymentDiners     = Mage::getStoreConfig('design/payment_flags/flag_diners'); ?>
+		<?php $_paymentHipercard  = Mage::getStoreConfig('design/payment_flags/flag_hipercard'); ?>
+		<?php $_paymentJcb        = Mage::getStoreConfig('design/payment_flags/flag_jcb'); ?>
+		<?php $_paymentBoleto     = Mage::getStoreConfig('design/payment_flags/flag_boleto'); ?>
+		<?php $_paymentItau       = Mage::getStoreConfig('design/payment_flags/flag_itau'); ?>
+		<?php $_paymentSantander  = Mage::getStoreConfig('design/payment_flags/flag_santander'); ?>
+		<?php if ($_paymentVisa): ?>
+			<li class="visa"><span title="Visa" data-toggle="tooltip">Visa</span></li>
+		<?php endif ?>
+		<?php if ($_paymentMastercard): ?>
+			<li class="mastercard"><span title="Mastercard" data-toggle="tooltip">Mastercard</span></li>
+		<?php endif ?>
+		<?php if ($_paymentElo): ?>
+			<li class="elo"><span title="Elo" data-toggle="tooltip">Elo</span></li>
+		<?php endif ?>
+		<?php if ($_paymentAmerican): ?>
+			<li class="american-express"><span title="American Express" data-toggle="tooltip">American Express</span></li>
+		<?php endif ?>
+		<?php if ($_paymentDiners): ?>
+			<li class="diners hidden-xs hidden-sm"><span title="Diners" data-toggle="tooltip">Diners</span></li>
+		<?php endif ?>
+		<?php if ($_paymentHipercard): ?>
+			<li class="hipercard"><span title="Hipercard" data-toggle="tooltip">Hipercard</span></li>
+		<?php endif ?>
+		<?php if ($_paymentJcb): ?>
+			<li class="jcb hidden-xs hidden-sm"><span title="JCB" data-toggle="tooltip">JCB</span></li>
+		<?php endif ?>
+		<?php if ($_paymentBoleto): ?>
+			<li class="boleto"><span title="Boleto" data-toggle="tooltip">Boleto</span></li>
+		<?php endif ?>
+		<?php if ($_paymentItau): ?>
+			<li class="itau"><span title="Itaú" data-toggle="tooltip">Itaú</span></li>
+		<?php endif ?>
+		<?php if ($_paymentSantander): ?>
+			<li class="santander"><span title="Boleto" data-toggle="tooltip">Santander</span></li>
+		<?php endif ?>
+	</ul>
+</div>

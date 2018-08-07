@@ -1,0 +1,82 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestrike_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="store-features">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12">
+				<hr>
+			</div>
+			<?php $_shippingFree = Mage::getStoreConfig('design/advanced_shipping/free_shipping'); ?>
+			<?php if ($_shippingFree): ?>
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<span class="feature-icon-shipping"></span>
+						</div>
+						<div class="feature-content">
+							<strong><?php echo $this->__('Free Shipping'); ?></strong>
+							<span><?php echo $this->__('Shop') . ' +' . Mage::helper('core')->currency($_shippingFree); ?></span>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+			
+			<?php $_paymentCash = Mage::getStoreConfig('design/advanced_payment/payment_cash_discount'); ?>
+			<?php if ($_paymentCash): ?>
+				<div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<span class="feature-icon-barcode"></span>
+						</div>
+						<div class="feature-content">
+							<strong><?php echo $_paymentCash . $this->__('% off') ?></strong>
+							<span><?php echo $this->__('on cash payment'); ?></span>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+
+			<?php $_paymentPlots = Mage::getStoreConfig('design/advanced_payment/payment_plots'); ?>
+			<?php $_paymentFreePlots = Mage::getStoreConfig('design/advanced_payment/payment_free_plots'); ?>
+			<?php $_paymentShow = Mage::getStoreConfig('design/advanced_payment/payment_plots_show'); ?>
+			<?php  if ($_paymentFreePlots) {
+				$_paymentTax = $this->__('no tax'); } else {
+				$_paymentTax = $this->__('on credit card'); } 
+			?>
+			<?php if ($_paymentPlots): ?>
+				<div class="hidden-xs col-sm-4 col-md-4 col-lg-3">
+					<div class="feature-box">
+						<div class="feature-icon">
+							<span class="feature-icon-credit-card"></span>
+						</div>
+						<div class="feature-content">
+							<strong><?php echo $this->__('Max plots'); ?></strong>
+							<span><?php echo $_paymentShow . 'x ' . $_paymentTax; ?></span>
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
+				
+			<?php $_FeatureTitle = Mage::getStoreConfig('design/special_feature/title'); ?>
+			<?php $_FeatureSubtitle = Mage::getStoreConfig('design/special_feature/subtitle'); ?>
+			<div class="hidden-xs hidden-sm hidden-md col-lg-3">
+				<div class="feature-box">
+					<div class="feature-icon">
+						<span class="feature-icon-warranty"></span>
+					</div>
+					<div class="feature-content">
+						<strong><?php echo $_FeatureTitle ?></strong>
+						<span><?php echo $_FeatureSubtitle ?></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestrike_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="footer-social">
+	<ul>
+		<?php $_socialFacebook  = Mage::getStoreConfig('design/social/facebook'); ?>
+		<?php $_socialInstagram = Mage::getStoreConfig('design/social/instagram'); ?>
+		<?php $_socialTwitter   = Mage::getStoreConfig('design/social/twitter'); ?>
+		<?php $_socialPinterest = Mage::getStoreConfig('design/social/pinterest'); ?>
+		<?php $_socialGoogle    = Mage::getStoreConfig('design/social/google'); ?>
+		<?php if ($_socialFacebook): ?>
+			<li class="facebook"><a href="https://facebook.com/<?php echo $_socialFacebook ?>" title="Facebook" data-toggle="tooltip" target="_blank">Facebook</a></li>
+		<?php endif ?>
+		<?php if ($_socialInstagram): ?>
+			<li class="instagram"><a href="https://instagram.com/<?php echo $_socialInstagram ?>" title="Instagram" data-toggle="tooltip" target="_blank">Instagram</a></li>
+		<?php endif ?>
+		<?php if ($_socialTwitter): ?>
+			<li class="twitter"><a href="https://twitter.com/<?php echo $_socialTwitter ?>" title="Twitter" data-toggle="tooltip" target="_blank">Twitter</a></li>
+		<?php endif ?>
+		<?php if ($_socialPinterest): ?>
+			<li class="pinterest"><a href="https://pinterest.com/<?php echo $_socialPinterest ?>" title="Pinterest" data-toggle="tooltip" target="_blank">Pinterest</a></li>
+		<?php endif ?>
+		<?php if ($_socialGoogle): ?>
+			<li class="google"><a href="<?php echo $_socialGoogle ?>" title="Google Plus" data-toggle="tooltip" target="_blank">Google Plus</a></li>
+		<?php endif ?>
+	</ul>
+</div>

@@ -1,0 +1,61 @@
+/**
+ *
+ * @category:   design
+ * @package:    magestrike_default
+ * @author:     Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+
+
+
+//== Payment icons
+//
+
+
+.payment-icons {
+	ul {
+		display: flex;
+    	align-items: center;
+	}
+
+	li {
+		margin-right: @default-space / 2;
+		&:last-child { margin-right: 0; }
+
+		span {
+			font-size: 0;
+			float: left;
+
+			&:before {
+				font-family: "PaymentFont";
+				font-size: 20px;
+			}
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	.visa             { span { &:before { content: @pf-var-visa;             } } }
+	.mastercard       { span { &:before { content: @pf-var-mastercard-alt;   } } }
+	.elo              { span { &:before { content: @pf-var-elo-alt;          } } }
+	.american-express { span { &:before { content: @pf-var-american-express; } } }
+	.diners           { span { &:before { content: @pf-var-diners;           } } }
+	.hipercard        { span { &:before { content: @pf-var-hipercard;        } } }
+	.jcb              { span { &:before { content: @pf-var-jcb;              } } }
+	.diners           { span { &:before { content: @pf-var-diners;           } } }
+
+	.boleto {
+		span:before {
+			font-family: "FontAwesome";
+			content: @fa-var-barcode;
+			font-size: 24px;
+			line-height: 28px;
+		}
+	}
+}
+
+
+//==
+

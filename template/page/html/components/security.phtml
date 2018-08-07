@@ -1,0 +1,29 @@
+<?php
+/**
+ *
+ * @category    design
+ * @package     magestrike_default
+ * @author      Wesley Almeida <wesleyalmd@gmail.com>
+ *
+ */
+?>
+<div class="security-seal">
+	<ul>
+		<?php $_securityGoogle   = Mage::getStoreConfig('design/security/google'); ?>
+		<?php $_securityComodo   = Mage::getStoreConfig('design/security/comodo'); ?>
+		<?php $_securityGeotrust = Mage::getStoreConfig('design/security/geotrust'); ?>
+		<?php $_securityVerisign = Mage::getStoreConfig('design/security/verisign'); ?>
+		<?php if ($_securityGoogle): ?>
+			<li title="Google Safe" data-toggle="tooltip"><a href="https://transparencyreport.google.com/safe-browsing/search?url=<?php echo $_baseUrl ?>" target="_blank"><img alt="Google Safe" src="<?php echo $this->getSkinUrl('images/seal-google.png'); ?>" /> </a></li>
+		<?php endif; ?>
+		<?php if ($_securityComodo): ?>
+			<li title="Comodo" data-toggle="tooltip"><a href="javascript:void(0)"> <img alt="Comodo" src="<?php echo $this->getSkinUrl('images/seal-comodo.png'); ?>" /> </a></li>
+		<?php endif; ?>
+		<?php if ($_securityGeotrust): ?>
+			<li title="GeoTrust" data-toggle="tooltip"><a href="javascript:void(0)"> <img alt="GeoTrust" src="<?php echo $this->getSkinUrl('images/seal-geotrust.png'); ?>" /> </a></li>
+		<?php endif; ?>
+		<?php if ($_securityVerisign): ?>
+			<li title="Verisign" data-toggle="tooltip"><a href="javascript:void(0)"> <img alt="Verisign" src="<?php echo $this->getSkinUrl('images/seal-verisign.png'); ?>" /> </a></li>
+		<?php endif; ?>
+	</ul>
+</div>

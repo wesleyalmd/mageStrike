@@ -3,7 +3,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -28,7 +28,7 @@ Default layout, loads most of the pages
                      https://github.com/wesleyalmd/magento-footer-js
                 -->
                 <action method="addJs"><script>prototype/prototype.js</script></action>
-                <!-- jq last version from @magestack_default -->
+                <!-- jq last version from @magestrike_default -->
                 <action method="addJs"><script>lib/jquery.min.js</script></action> <!-- 3.2.1 -->
                 <action method="addJs"><script>lib/jquery/noconflict.js</script></action>
                 <action method="addJs"><script>lib/ccard.js</script></action>

@@ -3,7 +3,7 @@
 /**
  *
  * @category    design
- * @package     magestack_default
+ * @package     magestrike_default
  * @author      Wesley Almeida <wesleyalmd@gmail.com>
  *
  */
@@ -31,11 +31,11 @@
         </reference>
         <reference name="content">
             <block type="onestepcheckout/onestep" name="onestepcheckout.onestep" template="onestepcheckout/onestep.phtml">
-                <!-- ROWS -->
+                <!-- Rows -->
                 <block type="onestepcheckout/onestep_title" name="onestepcheckout.onestep.title" as="title" template="onestepcheckout/onestep/title.phtml"/>
                 <block type="onestepcheckout/onestep_authentification" name="onestepcheckout.onestep.auth" as="auth" template="onestepcheckout/onestep/authentification.phtml"/>
 
-                <!-- LEFT COLUMN -->
+                <!-- Left Column -->
                 <block type="onestepcheckout/onestep_form_address" name="onestepcheckout.onestep.form.address" as="address" template="onestepcheckout/onestep/form/address.phtml">
                     <block type="onestepcheckout/onestep_form_address_billing" name="onestepcheckout.onestep.form.address.billing" as="billing" template="onestepcheckout/onestep/form/address/billing.phtml">
                         <block type="core/text_list" name="onestepcheckout.onestep.form.address.billing.extra" as="extra"/>
@@ -45,7 +45,7 @@
                     </block>
                 </block>
 
-                <!-- MIDDLE COLUMN -->
+                <!-- Middle Column -->
                 <block type="onestepcheckout/onestep_form_shippingmethod" name="onestepcheckout.onestep.form.shippingmethod" as="shippingmethod" template="onestepcheckout/onestep/form/shipping_method.phtml">
                     <block type="checkout/onepage_shipping_method_additional" name="onestepcheckout.onestep.form.shippingmethod.extra" as="extra" template="checkout/onepage/shipping_method/additional.phtml"/>
                 </block>
@@ -53,7 +53,7 @@
                     <block type="core/text_list" name="onestepcheckout.onestep.form.paymentmethod.extra" as="extra"/>
                 </block>
 
-                <!-- RIGHT COLUMN -->
+                <!-- Right Column -->
                 <block type="onestepcheckout/onestep_form_review_cart" name="onestepcheckout.onestep.form.review.cart" as="review.cart" template="onestepcheckout/onestep/form/review/cart.phtml">
                     <action method="addItemRender">
                         <type>default</type>
@@ -112,20 +112,25 @@
                     </action>
                     <block type="checkout/cart_totals" name="checkout.onepage.review.info.totals" as="totals" template="onestepcheckout/onestep/form/review/cart/totals.phtml"/>
                 </block>
+
                 <block type="onestepcheckout/onestep_form_review_coupon" name="onestepcheckout.onestep.form.review.coupon" as="review.coupon" template="onestepcheckout/onestep/form/review/coupon.phtml"/>
+
                 <block type="onestepcheckout/onestep_form_review_comments" name="onestepcheckout.onestep.form.review.comments" as="review.comments" template="onestepcheckout/onestep/form/review/comments.phtml">
                     <!-- Simple comments block !-->
                     <block type="onestepcheckout/onestep_form_review_comments_simple" name="onestepcheckout.onestep.form.review.comments.simple" as="simple" template="onestepcheckout/onestep/form/review/comments/simple.phtml"/>
                     <!-- DDAN block !-->
                 </block>
+
                 <block type="onestepcheckout/onestep_form_review_newsletter" name="onestepcheckout.onestep.form.review.newsletter" as="review.newsletter" template="onestepcheckout/onestep/form/review/newsletter.phtml">
                     <!-- Native Magento newsletter !-->
                     <block type="onestepcheckout/onestep_form_review_newsletter_simple" name="onestepcheckout.onestep.form.review.newsletter.simple" as="mage.newsletter" template="onestepcheckout/onestep/form/review/newsletter/simple.phtml"/>
                 </block>
+
                 <block type="onestepcheckout/onestep_form_review_terms" name="onestepcheckout.onestep.form.review.terms" as="review.terms" template="onestepcheckout/onestep/form/review/terms.phtml"/>
                 <block type="core/text_list" name="onestepcheckout.onestep.form.review.extra" as="review.extra"/>
             </block>
         </reference>
+
     </onestepcheckout_index_index>
     <customer_account_edit translate="label">
         <reference name="head">

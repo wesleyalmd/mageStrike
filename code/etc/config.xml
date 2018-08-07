@@ -17,10 +17,15 @@
             </depends>
         </CastleWeb_MageAdvanced>
     </modules>
-    <global>
-        <models />
-        <resources />
-        <extraconfig />
-        <blocks />
-    </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <CastleWeb_MageAdvanced>
+                    <files>
+                        <default>CastleWeb_MageAdvanced.csv</default>
+                    </files>
+                </CastleWeb_MageAdvanced>
+            </modules>
+        </translate>
+    </adminhtml>
 </config> 
